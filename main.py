@@ -4,7 +4,7 @@ import random
 
 
 bot = commands.Bot(command_prefix = ">")
-extensions = ["cogs.test"] # list of cogs to call
+extensions = ["fun"] # list of cogs to call
 
 
 @bot.event
@@ -12,14 +12,6 @@ async def on_ready():
     print(f"{bot.user.name} - {bot.user.id}")
     print(discord.__version__)
     print("Ready...")
-
-
-@bot.command()
-async def repeat(ctx, *, word): #
-    """
-    Repeats whatever you type in
-    """
-    await ctx.send(word)
 
 
 # immediately stop the bot
@@ -42,7 +34,7 @@ async def load(ctx, extension):
         try:
             bot.load_extension(extension)
             print(f"Loaded {extension}.\n")
-        except:
+        except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
     else:
         await ctx.send("You do not have permission to use this command")
@@ -57,7 +49,7 @@ async def unload(ctx, extension):
         try:
             bot.unload_extension(extension)
             print(f"Unloaded {extension}.\n")
-        except:
+        except Exception as error:
             print(f"{extension} could not be unloaded. [{error}]")
     else:
         await ctx.send("You do not have permission to use this command")
@@ -73,7 +65,7 @@ async def reload(ctx, extension):
             bot.unload_extension(extension)
             bot.load_extension(extension)
             print(f"Reloaded {extension}.\n")
-        except:
+        except Exception as error:
             print(f"{extension} could not be reloaded. [{error}]")
     else:
         await ctx.send("You do not have permission to use this command")
