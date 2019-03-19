@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import json
 
+
 # VARIABLES
 # ghost_id = ""
 # plugs_id = "146737110974595073"
@@ -10,7 +11,8 @@ import json
 # approved_roles = [admin_role]
 # general_id = "547907603494338610"
 
-class fun(commands.Cog):
+
+class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
