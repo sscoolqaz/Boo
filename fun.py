@@ -26,27 +26,22 @@ class Fun(commands.Cog):
             # ms = (t.timestamp-ctx.message.timestamp).total_seconds() * 1000
             # await self.bot.edit_message(t, new_content='Pong! Took: {}ms'.format(int(ms)))
         else:
-            await self.bot.say("You do not have permission to use this command")
-
-
-    @bot.command()
-    async def echo(ctx, *, word): #
-        """
-        Repeats whatever you type in
-        """
-
+            await ctx.send("You do not have permission to use this command")
 
 
     # copies the senders message
     @commands.command(hidden = True)
     async def echo(self, ctx, *, words):
+        """
+        Repeats whatever you type in
+        """
         allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
         user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
         if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
-            await self.bot.delete_message(ctx.message) # delete the original message
-            await self.bot.say(words) # send the message
+            await ctx.message.delete() # delete the original message
+            await ctx.send(words) # send the message
         else:
-            await self.bot.say("You do not have permission to use this command")
+            await ctx.send("You do not have permission to use this command")
 
 
     # copies the senders message
@@ -59,8 +54,8 @@ class Fun(commands.Cog):
             await self.bot.delete_message(ctx.message) # delete the original message
             await self.bot.send_message(general_channel, ctx.message.content[10:]) # send the message
         else:
-            await self.bot.say("You do not have permission to use this command")
+            await ctx.send("You do not have permission to use this command")
 
 
 def setup(bot):
-    bot.add_cog(fun(bot))
+    bot.add_cog(Fun(bot))

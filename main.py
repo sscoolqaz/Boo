@@ -62,8 +62,7 @@ async def reload(ctx, extension):
     user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
     if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
         try:
-            bot.unload_extension(extension)
-            bot.load_extension(extension)
+            bot.reload_extension(extension)
             print(f"Reloaded {extension}.\n")
         except Exception as error:
             print(f"{extension} could not be reloaded. [{error}]")
@@ -79,6 +78,3 @@ if __name__ == '__main__':
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
     bot.run("NTQ0NjYyMTU3NDQzMjAzMDk1.D3CYwA.RL9KFnZyxqN4HDxQJzHAN7iGBxA")
-
-# bot.load_extension("cogs.test")
-# bot.run("NTQ0NjYyMTU3NDQzMjAzMDk1.D3CYwA.RL9KFnZyxqN4HDxQJzHAN7iGBxA")
