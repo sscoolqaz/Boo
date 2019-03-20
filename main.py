@@ -17,9 +17,7 @@ async def on_ready():
 # immediately stop the bot
 @bot.command() # hidden = True
 async def stop(ctx):
-    allowed_role = ["Red Panda Enthusiast"] # role allowed to use this command
-    user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-    if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         await bot.logout()
     else:
         await ctx.send("You do not have permission to use this command")
@@ -28,9 +26,7 @@ async def stop(ctx):
 # manually load a cog
 @bot.command(hidden = True)
 async def load(ctx, extension):
-    allowed_role = ["Red Panda Enthusiast"] # role allowed to use this command
-    user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-    if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.load_extension(extension)
             print(f"Loaded {extension}.\n")
@@ -43,9 +39,7 @@ async def load(ctx, extension):
 # manually unload a cog
 @bot.command(hidden = True)
 async def unload(ctx, extension):
-    allowed_role = ["Red Panda Enthusiast"] # role allowed to use this command
-    user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-    if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.unload_extension(extension)
             print(f"Unloaded {extension}.\n")
@@ -58,9 +52,7 @@ async def unload(ctx, extension):
 # manually reload a cog
 @bot.command(hidden = True)
 async def reload(ctx, extension):
-    allowed_role = ["Red Panda Enthusiast"] # role allowed to use this command
-    user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-    if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.reload_extension(extension)
             print(f"Reloaded {extension}.\n")
@@ -68,6 +60,11 @@ async def reload(ctx, extension):
             print(f"{extension} could not be reloaded. [{error}]")
     else:
         await ctx.send("You do not have permission to use this command")
+
+
+# check if the user has permission to use this command
+def check_roles(allowed_role, author_roles):
+    return(bool(set(author_roles) & set(allowed_role)))
 
 
 if __name__ == '__main__':

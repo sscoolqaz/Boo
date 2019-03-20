@@ -3,15 +3,6 @@ from discord.ext import commands
 import json
 
 
-# VARIABLES
-# ghost_id = ""
-# plugs_id = "146737110974595073"
-# admin_role = ""
-# approved_users = [ghost_id, plugs_id]
-# approved_roles = [admin_role]
-# general_id = "547907603494338610"
-
-
 class Fun(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -19,9 +10,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def ping(self, ctx):
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             await ctx.send('Pong!')
             # ms = (t.timestamp-ctx.message.timestamp).total_seconds() * 1000
             # await self.bot.edit_message(t, new_content='Pong! Took: {}ms'.format(int(ms)))
@@ -35,9 +24,7 @@ class Fun(commands.Cog):
         """
         Repeats whatever you type in
         """
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             await ctx.message.delete() # delete the original message
             await ctx.send(words) # send the message
         else:
@@ -46,16 +33,18 @@ class Fun(commands.Cog):
 
     # copies the senders message
     @commands.command(hidden = True)
-    async def gen_echo(self, ctx):
-        general_channel = self.bot.get_channel(general_id) # auto role channel
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
-            await self.bot.delete_message(ctx.message) # delete the original message
-            await self.bot.send_message(general_channel, ctx.message.content[10:]) # send the message
+    async def gen_echo(self, ctx, *, words):
+        if check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+            await ctx.message.delete() # delete the original message
+            await self.bot.get_channel(554062734950531094).send(words) # send the message
         else:
             await ctx.send("You do not have permission to use this command")
 
 
 def setup(bot):
     bot.add_cog(Fun(bot))
+
+
+# check if the user has permission to use this command
+def check_roles(allowed_role, author_roles):
+    return(bool(set(author_roles) & set(allowed_role)))
