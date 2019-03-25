@@ -1,6 +1,7 @@
 import discord
 from discord.ext import commands
 import random
+import utils
 
 
 bot = commands.Bot(command_prefix = ">")
@@ -60,11 +61,6 @@ async def reload(ctx, extension):
             print(f"{extension} could not be reloaded. [{error}]")
     else:
         await ctx.send("You do not have permission to use this command")
-
-
-# check if the user has permission to use this command
-def check_roles(allowed_role, author_roles):
-    return(bool(set(author_roles) & set(allowed_role)))
 
 
 if __name__ == '__main__':

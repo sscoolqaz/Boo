@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import json
+import utils
 
 
 # VARIABLES
@@ -32,9 +33,7 @@ class member_moderation(commands.Cog):
     # mute specific user
     @commands.command(hidden = True)
     async def mute(self, ctx, mute_user):
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             user_to_mute = ctx.message.mentions[0] # id of person to mute that was mentioned in command
             mute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
             await user_to_mute.add_roles(mute_role) # assign the role
@@ -45,9 +44,7 @@ class member_moderation(commands.Cog):
     # unmute specific user
     @commands.command(hidden = True)
     async def unmute(self, ctx, unmute_user):
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             message_sender = ctx.message.author # get message author
             user_to_unmute = ctx.message.mentions[0] # id of person to unmute that was mentioned in command
             unmute_role = discord.utils.get(message_sender.server.roles, name = "Muted") # get the role to apply
@@ -59,9 +56,7 @@ class member_moderation(commands.Cog):
     # mute specific user
     @commands.command(hidden = True)
     async def warn(self, ctx, mute_user):
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             message_sender = ctx.message.author # get message author
             warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
             warning_id = ctx.message.mentions[0].id # id of person to that was warned
@@ -90,9 +85,7 @@ class member_moderation(commands.Cog):
     # mute specific user
     @commands.command(hidden = True)
     async def unwarn(self, ctx, mute_user):
-        allowed_role = ["Red Panda Enthusiast", "Administrator"] # role allowed to use this command
-        user_roles = [y.name for y in ctx.message.author.roles] # get the users roles
-        if bool(set(user_roles) & set(allowed_role)): # check the user has the required role
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             message_sender = ctx.message.author # get message author
             warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
             warning_id = ctx.message.mentions[0].id # id of person to that was warned
@@ -120,6 +113,7 @@ class member_moderation(commands.Cog):
 
         if reaction.message.channel.id != roleChannelId:
             return # not in the role channel
+
         # first message
         elif str(reaction.emoji) == "🍌":
             add_role = discord.utils.get(user.server.roles, name = "Sub Freak")
@@ -173,6 +167,7 @@ class member_moderation(commands.Cog):
     async def on_reaction_remove(self, reaction, user):
         if reaction.message.channel.id != roleChannelId:
             return # not in the role channel
+        #first message
         elif str(reaction.emoji) == "🍌":
             remove_role = discord.utils.get(user.server.roles, name = "Sub Freak")
             await self.bot.remove_roles(user, remove_role)
@@ -229,7 +224,7 @@ class member_moderation(commands.Cog):
         entrance = self.bot.get_channel(entrance_id)
         verify_channel = self.bot.get_channel(verify_id)
         # send messages
-        await self.bot.send_message(new_member, f"BOO! Welcome to Zer0!\nPlease read through our rules page then type /verify into the #verify channel to access the server")
+        await self.bot.send_message(new_member, f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await self.bot.send_message(entrance, f"<@{new_member.id}> just joined the server!")
 
         # auto assign role to new member
