@@ -38,6 +38,7 @@ class member_moderation(commands.Cog):
             user_to_mute = ctx.message.mentions[0] # id of person to mute that was mentioned in command
             mute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
             await user_to_mute.add_roles(mute_role) # assign the role
+            await ctx.send(f"{ctx.message.author} has muted {user_to_mute}")
         else:
             await self.bot.say("You do not have permission to use this command")
 
@@ -49,6 +50,7 @@ class member_moderation(commands.Cog):
             user_to_unmute = ctx.message.mentions[0] # id of person to unmute that was mentioned in command
             unmute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
             await user_to_unmute.remove_roles(unmute_role) # assign the role
+            await ctx.send(f"{ctx.message.author} has unmuted {user_to_unmute}")
         else:
             await self.bot.say("You do not have permission to use this command")
 
