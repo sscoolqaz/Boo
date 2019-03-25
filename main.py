@@ -5,7 +5,7 @@ import utils
 
 
 bot = commands.Bot(command_prefix = ">")
-extensions = ["fun"] # list of cogs to call
+extensions = ["fun","member_mod"] # list of cogs to call
 
 
 @bot.event
@@ -18,7 +18,7 @@ async def on_ready():
 # immediately stop the bot
 @bot.command() # hidden = True
 async def stop(ctx):
-    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         await bot.logout()
     else:
         await ctx.send("You do not have permission to use this command")
@@ -27,7 +27,7 @@ async def stop(ctx):
 # manually load a cog
 @bot.command(hidden = True)
 async def load(ctx, extension):
-    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.load_extension(extension)
             print(f"Loaded {extension}.\n")
@@ -40,7 +40,7 @@ async def load(ctx, extension):
 # manually unload a cog
 @bot.command(hidden = True)
 async def unload(ctx, extension):
-    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.unload_extension(extension)
             print(f"Unloaded {extension}.\n")
@@ -53,7 +53,7 @@ async def unload(ctx, extension):
 # manually reload a cog
 @bot.command(hidden = True)
 async def reload(ctx, extension):
-    if check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         try:
             bot.reload_extension(extension)
             print(f"Reloaded {extension}.\n")

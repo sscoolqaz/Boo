@@ -11,6 +11,7 @@ entrance_id = "547907603494338610"
 verify_id = "554120068619829249"
 booette_id = "554062982301220905"
 
+
 class member_moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
@@ -45,10 +46,9 @@ class member_moderation(commands.Cog):
     @commands.command(hidden = True)
     async def unmute(self, ctx, unmute_user):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            message_sender = ctx.message.author # get message author
             user_to_unmute = ctx.message.mentions[0] # id of person to unmute that was mentioned in command
-            unmute_role = discord.utils.get(message_sender.server.roles, name = "Muted") # get the role to apply
-            await self.bot.remove_roles(user_to_unmute, unmute_role) # assign the role
+            unmute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
+            await user_to_unmute.remove_roles(unmute_role) # assign the role
         else:
             await self.bot.say("You do not have permission to use this command")
 
