@@ -5,7 +5,7 @@ import utils
 
 
 bot = commands.Bot(command_prefix = ">")
-extensions = ["fun","member_mod"] # list of cogs to call
+extensions = ["fun","member_mod","chat_mod"] # list of cogs to call
 
 
 @bot.event
