@@ -12,9 +12,7 @@ class Fun(commands.Cog):
     @commands.command()
     async def ping(self, ctx):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await ctx.send('Pong!')
-            # ms = (t.timestamp-ctx.message.timestamp).total_seconds() * 1000
-            # await self.bot.edit_message(t, new_content='Pong! Took: {}ms'.format(int(ms)))
+            await ctx.send(f'Pong!')
         else:
             await ctx.send("You do not have permission to use this command")
 
@@ -37,7 +35,7 @@ class Fun(commands.Cog):
     async def gen_echo(self, ctx, *, words):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             await ctx.message.delete() # delete the original message
-            await self.bot.get_channel(554062734950531094).send(words) # send the message
+            await self.bot.get_channel(547907603494338610).send(words) # send the message
         else:
             await ctx.send("You do not have permission to use this command")
 

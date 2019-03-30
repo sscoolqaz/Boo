@@ -3,9 +3,9 @@ from discord.ext import commands
 import utils
 
 # VARIABLES
-rules_id = "479273111787798529" # rules channel ID
-roles_id = "479273111787798529" # roles channel ID
-booette_id = "554062982301220905"
+rules_id = 561363686485131264 # rules channel ID
+roles_id = 561361379907600385 # roles channel ID
+
 
 class update(commands.Cog):
     def __init__(self, bot):
@@ -42,7 +42,7 @@ class update(commands.Cog):
             # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('550923952126427156').mention}\nShare Direct Links to Hentai Mangas\nAdd a flag reaction under the image for it's Language.\nNo conversations.", inline=False)
             # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('555275664224157698').mention}\nNSFW Cosplay.", inline=False)
             # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('555275959222272002').mention}\n\n\u200b", inline=False)
-            embed.add_field(name = f"Invite Link", value = f"https://discord.gg/4Z8q4PA", inline=False)
+            embed.add_field(name = f"Invite Link", value = f"https://discord.gg/wjf9suT", inline=False)
             await ctx.send(embed=embed)
         else:
             await ctx.send("You do not have permission to use this command")
@@ -52,7 +52,7 @@ class update(commands.Cog):
     async def update_roles(self, ctx):
         if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # delete existing messages
-            channel = ctx.message.channel # get the channel to clear the messages from
+            channel = self.bot.get_channel(roles_id) # get the channel to clear the messages from
             i = 0
             async for message in channel.history():
                 if i < (2):
@@ -68,7 +68,7 @@ class update(commands.Cog):
                 Roulette 🍎\n
                 Lewd 🥝\n
                 Spoilers 🍉\n""", inline=False)
-            channel_roles = await ctx.send(embed=embed1)
+            channel_roles = await channel.send(embed=embed1)
             # add the emojis to react with
             await channel_roles.add_reaction("🍌")
             await channel_roles.add_reaction("🍑")
@@ -88,7 +88,7 @@ class update(commands.Cog):
                 Orange 🔶\n
                 Green 💚\n
                 Purple 💜\n""", inline=False)
-            channel_roles = await ctx.send(embed=embed2)
+            channel_roles = await channel.send(embed=embed2)
             # add the emojis to react with
             await channel_roles.add_reaction("💦")
             await channel_roles.add_reaction("🎱")
