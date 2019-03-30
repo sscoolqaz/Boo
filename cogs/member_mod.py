@@ -27,7 +27,7 @@ class member_moderation(commands.Cog):
             print(f"The role {add_role} was added to {user}")
             await asyncio.sleep(1)
             rmv_role = discord.utils.get(ctx.guild.roles, name = "Temp")
-            await self.bot.remove_roles(user, rmv_role)
+            await user.remove_roles(rmv_role)
             print(f"The role {rmv_role} was removed from {user}")
 
 
@@ -225,16 +225,16 @@ class member_moderation(commands.Cog):
     async def on_member_join(self, member):
         # welcome new user
         # message destinations
-        new_member = await self.bot.get_user_info(member.id)
+        new_member = await self.bot.fetch_user(member.id)
         entrance = self.bot.get_channel(entrance_id)
         verify_channel = self.bot.get_channel(verify_id)
         # send messages
-        await self.bot.send_message(new_member, f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
-        await self.bot.send_message(entrance, f"<@{new_member.id}> just joined the server!")
+        # await self.bot.send(new_member, f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
+        await entrance.send(f"<@{new_member.id}> just joined the server!")
 
         # auto assign role to new member
-        add_role = discord.utils.get(member.server.roles, name = "Temp")
-        await self.bot.add_roles(member, add_role)
+        add_role = discord.utils.get(member.guild.roles, name = "Temp")
+        await member.add_roles(add_role)
 
 
 def setup(bot):
