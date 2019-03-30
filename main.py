@@ -70,4 +70,4 @@ if __name__ == '__main__':
             print(f"Loaded cog: {extension}")
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
-    bot.run("NDc3Nzk4MTgwMDU5MzQ4OTky.XJ7CsA.cN7WditvZhzrdDiXsObBzA73YG0")
+    bot.run("NTU0MDYyOTgyMzAxMjIwOTA1.XJ_imQ.2eQyYDsWfzAGQ3RsqlC7IxBtkOM")

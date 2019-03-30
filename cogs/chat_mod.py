@@ -39,6 +39,5 @@ class chat_mod(commands.Cog):
             print("You do not have permission to use this command")
 
 
-
 def setup(bot):
     bot.add_cog(chat_mod(bot))

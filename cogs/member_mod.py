@@ -6,10 +6,10 @@ import utils
 
 
 # VARIABLES
-roleChannelId = '513515376022388786'
-entrance_id = "547907603494338610"
-verify_id = "554120068619829249"
-booette_id = "554062982301220905"
+roleChannelId = 561361379907600385
+entrance_id = 547907603494338610
+verify_id = 554120068619829249
+booette_id = 477798180059348992
 
 
 class member_moderation(commands.Cog):
@@ -22,11 +22,11 @@ class member_moderation(commands.Cog):
     async def verify(self, ctx):
         if ctx.message.channel.id == verify_id:
             user = ctx.message.author
-            add_role = discord.utils.get(user.server.roles, name = "Member")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(ctx.guild.roles, name = "Member")
+            await user.add_roles(add_role)
             print(f"The role {add_role} was added to {user}")
             await asyncio.sleep(1)
-            rmv_role = discord.utils.get(user.server.roles, name = "Temp")
+            rmv_role = discord.utils.get(ctx.guild.roles, name = "Temp")
             await self.bot.remove_roles(user, rmv_role)
             print(f"The role {rmv_role} was removed from {user}")
 
@@ -56,59 +56,60 @@ class member_moderation(commands.Cog):
 
 
     # mute specific user
-    @commands.command(hidden = True)
-    async def warn(self, ctx, mute_user):
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            message_sender = ctx.message.author # get message author
-            warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-            warning_id = ctx.message.mentions[0].id # id of person to that was warned
-            # load the json file
-            with open('warnings.json') as f:
-                data = json.load(f)
-            record_exists = False
-            # search for the warned user
-            for user in data:
-                if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
-                    # increase the users warning count
-                    user['warnings'] += 1
-                    await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
-                    record_exists = True # record has been found
-            # if no record exists for the mentioned user
-            if record_exists == False:
-                data.append( {'id': warning_id, 'name': str(warning_name), 'warnings': 1} )
-            # write the edited dict to the json file
-            with open('warnings.json', 'w') as f:
-                json.dump(data, f, indent = 2)
-
-        else:
-            await self.bot.say("You do not have permission to use this command")
+    # @commands.command(hidden = True)
+    # async def warn(self, ctx, mute_user):
+    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    #         message_sender = ctx.message.author # get message author
+    #         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
+    #         warning_id = ctx.message.mentions[0].id # id of person to that was warned
+    #         # load the json file
+    #         with open('warnings.json') as f:
+    #             data = json.load(f)
+    #         record_exists = False
+    #         # search for the warned user
+    #         for user in data:
+    #             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
+    #                 # increase the users warning count
+    #                 user['warnings'] += 1
+    #                 await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
+    #                 record_exists = True # record has been found
+    #         # if no record exists for the mentioned user
+    #         if record_exists == False:
+    #             data.append( {'id': warning_id, 'name': str(warning_name), 'warnings': 1} )
+    #         # write the edited dict to the json file
+    #         with open('warnings.json', 'w') as f:
+    #             json.dump(data, f, indent = 2)
+    #
+    #     else:
+    #         await self.bot.say("You do not have permission to use this command")
 
 
     # mute specific user
-    @commands.command(hidden = True)
-    async def unwarn(self, ctx, mute_user):
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            message_sender = ctx.message.author # get message author
-            warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-            warning_id = ctx.message.mentions[0].id # id of person to that was warned
-            # load the json file
-            with open('warnings.json') as f:
-                data = json.load(f)
-            # search for the warned user
-            for user in data:
-                if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
-                    # increase the users warning count
-                    user['warnings'] = 0
-                    await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
-            # write the edited dict to the json file
-            with open('warnings.json', 'w') as f:
-                json.dump(data, f, indent = 2)
-
-        else:
-            await self.bot.say("You do not have permission to use this command")
+    # @commands.command(hidden = True)
+    # async def unwarn(self, ctx, mute_user):
+    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    #         message_sender = ctx.message.author # get message author
+    #         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
+    #         warning_id = ctx.message.mentions[0].id # id of person to that was warned
+    #         # load the json file
+    #         with open('warnings.json') as f:
+    #             data = json.load(f)
+    #         # search for the warned user
+    #         for user in data:
+    #             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
+    #                 # increase the users warning count
+    #                 user['warnings'] = 0
+    #                 await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
+    #         # write the edited dict to the json file
+    #         with open('warnings.json', 'w') as f:
+    #             json.dump(data, f, indent = 2)
+    #
+    #     else:
+    #         await self.bot.say("You do not have permission to use this command")
 
 
     # assign roles based on adding a reaction
+    @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
         if user.id == booette_id: # don't assign roles for Booette
             return
@@ -118,107 +119,109 @@ class member_moderation(commands.Cog):
 
         # first message
         elif str(reaction.emoji) == "🍌":
-            add_role = discord.utils.get(user.server.roles, name = "Sub Freak")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Sub Freak")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🍑"):
-            add_role = discord.utils.get(user.server.roles, name = "Dub Peasant")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Dub Peasant")
+            await user.add_roles(add_role)
         elif str(reaction.emoji) == "🍊":
-            add_role = discord.utils.get(user.server.roles, name = "Seasonal")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Seasonal")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🍎"):
-            add_role = discord.utils.get(user.server.roles, name = "Roulette")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Roulette")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🥝"):
-            add_role = discord.utils.get(user.server.roles, name = "Lewd")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Lewd")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🍉"):
-            add_role = discord.utils.get(user.server.roles, name = "Spoilers")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Spoilers")
+            await user.add_roles(add_role)
         # second message
         elif str(reaction.emoji) == "💦":
-            add_role = discord.utils.get(user.server.roles, name = "Blue")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Blue")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🎱"):
-            add_role = discord.utils.get(user.server.roles, name = "Black")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Black")
+            await user.add_roles(add_role)
         elif str(reaction.emoji) == "💛":
-            add_role = discord.utils.get(user.server.roles, name = "Yellow")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Yellow")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🐷"):
-            add_role = discord.utils.get(user.server.roles, name = "Pink")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Pink")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🔴"):
-            add_role = discord.utils.get(user.server.roles, name = "Red")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Red")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "⚪"):
-            add_role = discord.utils.get(user.server.roles, name = "White")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "White")
+            await user.add_roles(add_role)
         elif str(reaction.emoji) == "🔶":
-            add_role = discord.utils.get(user.server.roles, name = "Orange")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Orange")
+            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "💚"):
-            add_role = discord.utils.get(user.server.roles, name = "Green")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Green")
+            await user.add_roles(add_role)
         elif str(reaction.emoji) == "💜":
-            add_role = discord.utils.get(user.server.roles, name = "Purple")
-            await self.bot.add_roles(user, add_role)
+            add_role = discord.utils.get(user.guild.roles, name = "Purple")
+            await user.add_roles(add_role)
 
 
     # remove roles based on removing a reaction
+    @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
         if reaction.message.channel.id != roleChannelId:
             return # not in the role channel
         #first message
         elif str(reaction.emoji) == "🍌":
-            remove_role = discord.utils.get(user.server.roles, name = "Sub Freak")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Sub Freak")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🍑"):
-            remove_role = discord.utils.get(user.server.roles, name = "Dub Peasant")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Dub Peasant")
+            await user.remove_roles(remove_role)
         elif str(reaction.emoji) == "🍊":
-            remove_role = discord.utils.get(user.server.roles, name = "Seasonal")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Seasonal")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🍎"):
-            remove_role = discord.utils.get(user.server.roles, name = "Roulette")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Roulette")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🥝"):
-            remove_role = discord.utils.get(user.server.roles, name = "Lewd")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Lewd")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🍉"):
-            remove_role = discord.utils.get(user.server.roles, name = "Spoilers")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Spoilers")
+            await user.remove_roles(remove_role)
         # second message
         elif str(reaction.emoji) == "💦":
-            remove_role = discord.utils.get(user.server.roles, name = "Blue")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Blue")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🎱"):
-            remove_role = discord.utils.get(user.server.roles, name = "Black")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Black")
+            await user.remove_roles(remove_role)
         elif str(reaction.emoji) == "💛":
-            remove_role = discord.utils.get(user.server.roles, name = "Yellow")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Yellow")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🐷"):
-            remove_role = discord.utils.get(user.server.roles, name = "Pink")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Pink")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🔴"):
-            remove_role = discord.utils.get(user.server.roles, name = "Red")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Red")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "⚪"):
-            remove_role = discord.utils.get(user.server.roles, name = "White")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "White")
+            await user.remove_roles(remove_role)
         elif str(reaction.emoji) == "🔶":
-            remove_role = discord.utils.get(user.server.roles, name = "Orange")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Orange")
+            await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "💚"):
-            remove_role = discord.utils.get(user.server.roles, name = "Green")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Green")
+            await user.remove_roles(remove_role)
         elif str(reaction.emoji) == "💜":
-            remove_role = discord.utils.get(user.server.roles, name = "Purple")
-            await self.bot.remove_roles(user, remove_role)
+            remove_role = discord.utils.get(user.guild.roles, name = "Purple")
+            await user.remove_roles(remove_role)
 
 
     # a new member joins
+    @commands.Cog.listener()
     async def on_member_join(self, member):
         # welcome new user
         # message destinations
