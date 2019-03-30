@@ -6,7 +6,7 @@ import utils
 
 
 # VARIABLES
-roleChannelId = 561361379907600385
+roleChannelId = 513515376022388786
 entrance_id = 547907603494338610
 verify_id = 554120068619829249
 booette_id = 477798180059348992
@@ -229,7 +229,7 @@ class member_moderation(commands.Cog):
         entrance = self.bot.get_channel(entrance_id)
         verify_channel = self.bot.get_channel(verify_id)
         # send messages
-        # await self.bot.send(new_member, f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
+        await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
 
         # auto assign role to new member
