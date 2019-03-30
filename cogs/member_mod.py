@@ -3,13 +3,8 @@ from discord.ext import commands
 import asyncio
 import json
 import utils
-
-
-# VARIABLES
-roleChannelId = 513515376022388786
-entrance_id = 547907603494338610
-verify_id = 554120068619829249
-booette_id = 477798180059348992
+import channels
+import users
 
 
 class member_moderation(commands.Cog):
@@ -20,7 +15,7 @@ class member_moderation(commands.Cog):
     # mute all users -not finished-
     @commands.command(hidden = True)
     async def verify(self, ctx):
-        if ctx.message.channel.id == verify_id:
+        if ctx.message.channel.id == channels.channel_dict["verify"]:
             user = ctx.message.author
             add_role = discord.utils.get(ctx.guild.roles, name = "Member")
             await user.add_roles(add_role)
@@ -111,10 +106,10 @@ class member_moderation(commands.Cog):
     # assign roles based on adding a reaction
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
-        if user.id == booette_id: # don't assign roles for Booette
+        if user.id == users.users_dict["Booette"]: # don't assign roles for Booette
             return
 
-        if reaction.message.channel.id != roleChannelId:
+        if reaction.message.channel.id != channels.channel_dict["auto_role"]:
             return # not in the role channel
 
         # first message
@@ -169,7 +164,7 @@ class member_moderation(commands.Cog):
     # remove roles based on removing a reaction
     @commands.Cog.listener()
     async def on_reaction_remove(self, reaction, user):
-        if reaction.message.channel.id != roleChannelId:
+        if reaction.message.channel.id != channels.channel_dict["auto_role"]:
             return # not in the role channel
         #first message
         elif str(reaction.emoji) == "🍌":
@@ -226,8 +221,7 @@ class member_moderation(commands.Cog):
         # welcome new user
         # message destinations
         new_member = await self.bot.fetch_user(member.id)
-        entrance = self.bot.get_channel(entrance_id)
-        verify_channel = self.bot.get_channel(verify_id)
+        entrance = self.bot.get_channel(channels.channel_dict["entrance"])
         # send messages
         await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
