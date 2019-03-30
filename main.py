@@ -5,7 +5,7 @@ import utils
 
 
 bot = commands.Bot(command_prefix = ">")
-extensions = ["fun","member_mod","chat_mod","update"] # list of cogs to call
+extensions = ["cogs.fun","cogs.member_mod","cogs.chat_mod","cogs.update"] # list of cogs to call
 
 
 @bot.event
@@ -16,7 +16,7 @@ async def on_ready():
 
 
 # immediately stop the bot
-@bot.command() # hidden = True
+@bot.command(hidden = True)
 async def stop(ctx):
     if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
         await bot.logout()
