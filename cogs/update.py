@@ -1,10 +1,7 @@
 import discord
 from discord.ext import commands
 import utils
-
-# VARIABLES
-rules_id = 561363686485131264 # rules channel ID
-roles_id = 561361379907600385 # roles channel ID
+import channels
 
 
 class update(commands.Cog):
@@ -52,7 +49,7 @@ class update(commands.Cog):
     async def update_roles(self, ctx):
         if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # delete existing messages
-            channel = self.bot.get_channel(roles_id) # get the channel to clear the messages from
+            channel = self.bot.get_channel(channels.channel_dict["auto_role"]) # get the channel to clear the messages from
             i = 0
             async for message in channel.history():
                 if i < (2):
