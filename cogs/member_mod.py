@@ -50,57 +50,56 @@ class member_moderation(commands.Cog):
             await self.bot.say("You do not have permission to use this command")
 
 
-    # mute specific user
-    # @commands.command(hidden = True)
-    # async def warn(self, ctx, mute_user):
-    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-    #         message_sender = ctx.message.author # get message author
-    #         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-    #         warning_id = ctx.message.mentions[0].id # id of person to that was warned
-    #         # load the json file
-    #         with open('warnings.json') as f:
-    #             data = json.load(f)
-    #         record_exists = False
-    #         # search for the warned user
-    #         for user in data:
-    #             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
-    #                 # increase the users warning count
-    #                 user['warnings'] += 1
-    #                 await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
-    #                 record_exists = True # record has been found
-    #         # if no record exists for the mentioned user
-    #         if record_exists == False:
-    #             data.append( {'id': warning_id, 'name': str(warning_name), 'warnings': 1} )
-    #         # write the edited dict to the json file
-    #         with open('warnings.json', 'w') as f:
-    #             json.dump(data, f, indent = 2)
-    #
-    #     else:
-    #         await self.bot.say("You do not have permission to use this command")
+    # warn specific user
+    @commands.command(hidden = True)
+    async def warn(self, ctx, mute_user):
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+            message_sender = ctx.message.author # get message author
+            warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
+            warning_id = ctx.message.mentions[0].id # id of person to that was warned
+            # load the json file
+            with open('warnings.json') as f:
+                data = json.load(f)
+            record_exists = False
+            # search for the warned user
+            for user in data:
+                if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
+                    # increase the users warning count
+                    user['warnings'] += 1
+                    print(f"{user['name']} now has {user['warnings']} warnings.")
+                    record_exists = True # record has been found
+            # if no record exists for the mentioned user
+            if record_exists == False:
+                data.append( {'id': warning_id, 'name': str(warning_name), 'warnings': 1} )
+            # write the edited dict to the json file
+            with open('warnings.json', 'w') as f:
+                json.dump(data, f, indent = 2)
+        else:
+            await self.bot.say("You do not have permission to use this command")
 
 
-    # mute specific user
-    # @commands.command(hidden = True)
-    # async def unwarn(self, ctx, mute_user):
-    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-    #         message_sender = ctx.message.author # get message author
-    #         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-    #         warning_id = ctx.message.mentions[0].id # id of person to that was warned
-    #         # load the json file
-    #         with open('warnings.json') as f:
-    #             data = json.load(f)
-    #         # search for the warned user
-    #         for user in data:
-    #             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
-    #                 # increase the users warning count
-    #                 user['warnings'] = 0
-    #                 await self.bot.say(f"{user['name']} now has {user['warnings']} warnings.")
-    #         # write the edited dict to the json file
-    #         with open('warnings.json', 'w') as f:
-    #             json.dump(data, f, indent = 2)
-    #
-    #     else:
-    #         await self.bot.say("You do not have permission to use this command")
+    # remove warning from specific user
+    @commands.command(hidden = True)
+    async def unwarn(self, ctx, mute_user):
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+            message_sender = ctx.message.author # get message author
+            warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
+            warning_id = ctx.message.mentions[0].id # id of person to that was warned
+            # load the json file
+            with open('warnings.json') as f:
+                data = json.load(f)
+            # search for the warned user
+            for user in data:
+                if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
+                    # increase the users warning count
+                    user['warnings'] = 0
+                    print(f"{user['name']} now has {user['warnings']} warnings.")
+            # write the edited dict to the json file
+            with open('warnings.json', 'w') as f:
+                json.dump(data, f, indent = 2)
+
+        else:
+            await self.bot.say("You do not have permission to use this command")
 
 
     # assign roles based on adding a reaction
