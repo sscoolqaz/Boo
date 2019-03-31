@@ -102,6 +102,20 @@ class member_moderation(commands.Cog):
             await self.bot.say("You do not have permission to use this command")
 
 
+    # kick mentioned user
+    # @commands.command(hidden = True)
+    # async def kick(self, ctx, ban_user):
+    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    #         await kick(ctx.message.mentions[0])
+
+
+    # ban mentioned user
+    # @commands.command(hidden = True)
+    # async def ban(self, ctx, ban_user):
+    #     if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+    #         await ban(ctx.message.mentions[0])
+
+
     # assign roles based on adding a reaction
     @commands.Cog.listener()
     async def on_reaction_add(self, reaction, user):
