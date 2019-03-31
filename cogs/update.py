@@ -10,16 +10,18 @@ class update(commands.Cog):
 
 
     # @commands.command(hidden = True)
-    # async def update_rules(self, ctx):
-    #     if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-    #         # update the rules channel with any updates
-    #         embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
-    #             2. Spamming is not allowed.\n
-    #             3. Do not ask to become staff.\n
-    #             4. No Mass Mentions.\n
-    #             5. No Unicode / Blank Names.\n
-    #             6. No Dangerous & Shortened links.\n
-    #             7. Racism & Degrading behavior is not acceptable.""", color=0xaf68c9) # set up embed
+    async def update_rules(self, ctx):
+        if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+            # update the rules channel with any updates
+            embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
+                2. Spamming is not allowed.\n
+                3. Do not ask to become staff.\n
+                4. No Mass Mentions.\n
+                5. No Unicode / Blank Names.\n
+                6. No Dangerous & Shortened links.\n
+                7. Racism & Degrading behavior is not acceptable.""", color=0xaf68c9) # set up embed
+
+            embed.add_field(name = "Verification", value = f"To access the server, type `>verify` into the {self.bot.get_channel(channels.channel_dict["verify"])} channel", inline = False)
     #         # embed.add_field(name = f"-Channel Guidelines-", value = f"{self.bot.get_channel('513440916753874965').mention}\nServers Rules and Guidelines.", inline=False)
     #         # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('554120068619829249').mention}\nUse Command ```/verify``` to verify.", inline=False)
     #         # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('513515376022388786').mention}\nAutomatic Roles for Locked Channels.", inline=False)
@@ -39,10 +41,10 @@ class update(commands.Cog):
     #         # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('550923952126427156').mention}\nShare Direct Links to Hentai Mangas\nAdd a flag reaction under the image for it's Language.\nNo conversations.", inline=False)
     #         # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('555275664224157698').mention}\nNSFW Cosplay.", inline=False)
     #         # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('555275959222272002').mention}\n\n\u200b", inline=False)
-    #         embed.add_field(name = f"Invite Link", value = f"https://discord.gg/wjf9suT", inline=False)
-    #         await ctx.send(embed=embed)
-    #     else:
-    #         await ctx.send("You do not have permission to use this command")
+            embed.add_field(name = f"Invite Link", value = f"https://discord.gg/wjf9suT", inline=False)
+            await ctx.send(embed=embed)
+        else:
+            await ctx.send("You do not have permission to use this command")
 
 
     @commands.command(pass_context = True, hidden = True)
