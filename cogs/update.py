@@ -97,7 +97,7 @@ class update(commands.Cog):
             await channel_roles.add_reaction("💚")
             await channel_roles.add_reaction("💜")
         else:
-            await self.bot.say("You do not have permission to use this command")
+            await ctx.send("You do not have permission to use this command")
 
 
 def setup(bot):
