@@ -4,7 +4,7 @@ import random
 import utils
 
 
-bot = commands.Bot(command_prefix = ">")
+bot = commands.Bot(command_prefix = "/")
 extensions = ["cogs.fun","cogs.member_mod","cogs.chat_mod","cogs.update"] # list of cogs to call
 
 
