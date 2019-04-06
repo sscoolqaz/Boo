@@ -106,14 +106,14 @@ class member_moderation(commands.Cog):
     @commands.command(hidden = True)
     async def kick(self, ctx, ban_user):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await kick(ctx.message.mentions[0])
+            await self.bot.kick(ctx.message.mentions[0])
 
 
     # ban mentioned user
     @commands.command(hidden = True)
     async def ban(self, ctx, ban_user):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await ban(ctx.message.mentions[0])
+            await self.bot.ban(ctx.message.mentions[0])
 
 
     # assign roles based on adding a reaction
@@ -236,7 +236,7 @@ class member_moderation(commands.Cog):
         new_member = await self.bot.fetch_user(member.id)
         entrance = self.bot.get_channel(channels.channel_dict["entrance"])
         # send messages
-        await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
+        await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `>verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
 
         # auto assign role to new member
