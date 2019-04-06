@@ -106,14 +106,14 @@ class member_moderation(commands.Cog):
     @commands.command(hidden = True)
     async def kick(self, ctx, ban_user):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await self.bot.kick(ctx.message.mentions[0])
+            await ctx.message.mentions[0].kick()
 
 
     # ban mentioned user
     @commands.command(hidden = True)
     async def ban(self, ctx, ban_user):
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await self.bot.ban(ctx.message.mentions[0])
+            await ctx.message.mentions[0].ban()
 
 
     # assign roles based on adding a reaction
