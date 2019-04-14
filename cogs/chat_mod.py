@@ -12,7 +12,7 @@ class chat_mod(commands.Cog):
     # deletes messages containing specific words
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.author.id == "404369444639604737": # ignore Ghost
+        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             return
         elif any(bad_word in message.content.lower() for bad_word in banned_language.bad_words):
             await message.delete()
