@@ -102,5 +102,35 @@ class update(commands.Cog):
             await ctx.send("You do not have permission to use this command")
 
 
+#             async def on_ready():
+#
+# #delete msgs from verify chan
+#
+#     channel = client.get_channel("567859475365756928")
+#     msg=[]
+#     async for x in client.logs_from(channel, limit = 100):
+#         msg.append(x)
+#     await client.delete_messages(msg)
+#
+# #send verification msg w/ reaction
+#
+#     await client.send_message(channel, "**Verify you are human**")
+#     verifymsg2 = await client.send_message(channel, "React with ✅ to gain access to Hard Chats.")
+#     await client.add_reaction(verifymsg2, "✅")
+#
+#
+# @client.event
+# async def on_reaction_add(reaction, user):
+#     channel = client.get_channel('567859475365756928')
+#     if reaction.message.channel.id != channel:
+#         return
+#     else:
+#         if reaction.emoji == "✅":
+#             unverified = discord.utils.get(user.server.roles, id="567859230661541927")
+#             verified = discord.utils.get(user.server.roles, id="567876192229785610")
+#             await client.remove_roles(user, unverified)
+#             await client.add_roles(user, verified)
+
+
 def setup(bot):
     bot.add_cog(update(bot))
