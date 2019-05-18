@@ -14,14 +14,15 @@ class update(commands.Cog):
         if utils.check_roles(["Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # update the rules channel with any updates
             embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
-                2. Spamming is not allowed.\n
+                2. Spamming is not allowed.\n\n
                 3. Do not ask to become staff.\n
                 4. No mass mentions.\n
                 5. No unicode / blank names.\n
                 6. No dangerous & shortened links.\n
-                7. Racism & degrading behavior is not acceptable.""", color=0xaf68c9) # set up embed
+                7. Racism & degrading behavior is not acceptable.\n\n
+                Channel Rules of Use are in all channel descriptions.""", color=0xaf68c9) # set up embed
 
-            embed.add_field(name = "Verification", value = f"To access the server, type `>verify` into the  channel", inline = False) #{self.bot.get_channel(channels.channel_dict["verify"])}
+            embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"`/verify`", inline = False) #{self.bot.get_channel(channels.channel_dict["verify"])}
             # embed.add_field(name = f"-Channel Guidelines-", value = f"{self.bot.get_channel('513440916753874965').mention}\nServers Rules and Guidelines.", inline=False)
             # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('554120068619829249').mention}\nUse Command ```/verify``` to verify.", inline=False)
             # embed.add_field(name = f"\u200b", value = f"{self.bot.get_channel('513515376022388786').mention}\nAutomatic Roles for Locked Channels.", inline=False)
