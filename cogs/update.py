@@ -11,7 +11,7 @@ class update(commands.Cog):
 
     @commands.command(hidden = True)
     async def update_rules(self, ctx):
-        if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+        if utils.check_roles(["Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # update the rules channel with any updates
             embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
                 2. Spamming is not allowed.\n
