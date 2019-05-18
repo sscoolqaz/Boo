@@ -49,7 +49,7 @@ class update(commands.Cog):
 
     @commands.command(pass_context = True, hidden = True)
     async def update_roles(self, ctx):
-        if utils.check_roles(["Red Panda Enthusiast", "Ghost"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
+        if utils.check_roles(["Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # delete existing messages
             channel = self.bot.get_channel(channels.channel_dict["auto_role"]) # get the channel to clear the messages from
             i = 0
