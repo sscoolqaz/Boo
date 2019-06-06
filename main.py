@@ -70,4 +70,5 @@ if __name__ == '__main__':
             print(f"Loaded cog: {extension}")
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
-    bot.run("NTU0MDYyOTgyMzAxMjIwOTA1.XJ_imQ.2eQyYDsWfzAGQ3RsqlC7IxBtkOM")
+    bot.run("NTU0MDYyOTgyMzAxMjIwOTA1.XJ_imQ.2eQyYDsWfzAGQ3RsqlC7IxBtkOM") # real token
+    # bot.run("NTQ0NjYyMTU3NDQzMjAzMDk1.XNLj4Q.nVbJqRck7HKvNj7iswzYgYZ6bYg") # test token

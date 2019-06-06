@@ -117,13 +117,6 @@ class member_moderation(commands.Cog):
 
 
     # assign roles based on adding a reaction
-    @commands.Cog.listener()
-    async def on_reaction_add(self, reaction, user):
-        if user.id == users.users_dict["Booette"]: # don't assign roles for Booette
-            return
-
-        if reaction.message.channel.id != channels.channel_dict["auto_role"]:
-            return # not in the role channel
 
         # first message
         elif str(reaction.emoji) == "🍌":
