@@ -65,7 +65,6 @@ class update(commands.Cog):
                 Dub Peasant🍑\n
                 Seasonal 🍊\n
                 Roulette 🍎\n
-                Lewd 🥝\n
                 Spoilers 🍉\n""", inline=False)
             channel_roles = await channel.send(embed=embed1)
             # add the emojis to react with
@@ -73,7 +72,6 @@ class update(commands.Cog):
             await channel_roles.add_reaction("🍑")
             await channel_roles.add_reaction("🍊")
             await channel_roles.add_reaction("🍎")
-            await channel_roles.add_reaction("🥝")
             await channel_roles.add_reaction("🍉")
 
             # coloured roles

@@ -138,9 +138,6 @@ class member_moderation(commands.Cog):
         elif(str(reaction.emoji) == "🍎"):
             add_role = discord.utils.get(user.guild.roles, name = "Roulette")
             await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🥝"):
-            add_role = discord.utils.get(user.guild.roles, name = "Lewd")
-            await user.add_roles(add_role)
         elif(str(reaction.emoji) == "🍉"):
             add_role = discord.utils.get(user.guild.roles, name = "Spoilers")
             await user.add_roles(add_role)
@@ -191,9 +188,6 @@ class member_moderation(commands.Cog):
             await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🍎"):
             remove_role = discord.utils.get(user.guild.roles, name = "Roulette")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🥝"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Lewd")
             await user.remove_roles(remove_role)
         elif(str(reaction.emoji) == "🍉"):
             remove_role = discord.utils.get(user.guild.roles, name = "Spoilers")
