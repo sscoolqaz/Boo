@@ -117,102 +117,114 @@ class member_moderation(commands.Cog):
 
 
     # assign roles based on adding a reaction
+    @commands.Cog.listener()
+    async def on_raw_reaction_add(self, payload):
+        # variables
+        guild = self.bot.get_guild(payload.guild_id)
+        user = guild.get_member(payload.user_id)
+        channel = self.bot.get_channel(payload.channel_id)
 
-        # first message
-        elif str(reaction.emoji) == "🍌":
-            add_role = discord.utils.get(user.guild.roles, name = "Sub Freak")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🍑"):
-            add_role = discord.utils.get(user.guild.roles, name = "Dub Peasant")
-            await user.add_roles(add_role)
-        elif str(reaction.emoji) == "🍊":
-            add_role = discord.utils.get(user.guild.roles, name = "Seasonal")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🍎"):
-            add_role = discord.utils.get(user.guild.roles, name = "Roulette")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🍉"):
-            add_role = discord.utils.get(user.guild.roles, name = "Spoilers")
-            await user.add_roles(add_role)
-        # second message
-        elif str(reaction.emoji) == "💦":
-            add_role = discord.utils.get(user.guild.roles, name = "Blue")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🎱"):
-            add_role = discord.utils.get(user.guild.roles, name = "Black")
-            await user.add_roles(add_role)
-        elif str(reaction.emoji) == "💛":
-            add_role = discord.utils.get(user.guild.roles, name = "Yellow")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🐷"):
-            add_role = discord.utils.get(user.guild.roles, name = "Pink")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "🔴"):
-            add_role = discord.utils.get(user.guild.roles, name = "Red")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "⚪"):
-            add_role = discord.utils.get(user.guild.roles, name = "White")
-            await user.add_roles(add_role)
-        elif str(reaction.emoji) == "🔶":
-            add_role = discord.utils.get(user.guild.roles, name = "Orange")
-            await user.add_roles(add_role)
-        elif(str(reaction.emoji) == "💚"):
-            add_role = discord.utils.get(user.guild.roles, name = "Green")
-            await user.add_roles(add_role)
-        elif str(reaction.emoji) == "💜":
-            add_role = discord.utils.get(user.guild.roles, name = "Purple")
-            await user.add_roles(add_role)
+        if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
+            if payload.channel_id == channels.channel_dict["auto_role"]: # in the role channel
+                # first message
+                if str(payload.emoji) == "🍌":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🍑"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Dub Peasant")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == "🍊":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🍎"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Roulette")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🍉"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
+                    await user.add_roles(add_role)
+                # second message
+                elif str(payload.emoji) == "💦":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Blue")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🎱"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Black")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == "💛":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Yellow")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🐷"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Pink")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "🔴"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Red")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "⚪"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "White")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == "🔶":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Orange")
+                    await user.add_roles(add_role)
+                elif(str(payload.emoji) == "💚"):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Green")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == "💜":
+                    add_role = discord.utils.get(channel.guild.roles, name = "Purple")
+                    await user.add_roles(add_role)
 
 
     # remove roles based on removing a reaction
     @commands.Cog.listener()
-    async def on_reaction_remove(self, reaction, user):
-        if reaction.message.channel.id != channels.channel_dict["auto_role"]:
-            return # not in the role channel
-        #first message
-        elif str(reaction.emoji) == "🍌":
-            remove_role = discord.utils.get(user.guild.roles, name = "Sub Freak")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🍑"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Dub Peasant")
-            await user.remove_roles(remove_role)
-        elif str(reaction.emoji) == "🍊":
-            remove_role = discord.utils.get(user.guild.roles, name = "Seasonal")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🍎"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Roulette")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🍉"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Spoilers")
-            await user.remove_roles(remove_role)
-        # second message
-        elif str(reaction.emoji) == "💦":
-            remove_role = discord.utils.get(user.guild.roles, name = "Blue")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🎱"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Black")
-            await user.remove_roles(remove_role)
-        elif str(reaction.emoji) == "💛":
-            remove_role = discord.utils.get(user.guild.roles, name = "Yellow")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🐷"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Pink")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "🔴"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Red")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "⚪"):
-            remove_role = discord.utils.get(user.guild.roles, name = "White")
-            await user.remove_roles(remove_role)
-        elif str(reaction.emoji) == "🔶":
-            remove_role = discord.utils.get(user.guild.roles, name = "Orange")
-            await user.remove_roles(remove_role)
-        elif(str(reaction.emoji) == "💚"):
-            remove_role = discord.utils.get(user.guild.roles, name = "Green")
-            await user.remove_roles(remove_role)
-        elif str(reaction.emoji) == "💜":
-            remove_role = discord.utils.get(user.guild.roles, name = "Purple")
-            await user.remove_roles(remove_role)
+    async def on_raw_reaction_remove(self, payload):
+        # variables
+        guild = self.bot.get_guild(payload.guild_id)
+        user = guild.get_member(payload.user_id)
+        channel = self.bot.get_channel(payload.channel_id)
+
+        if payload.channel_id == channels.channel_dict["auto_role"]:
+            #first message
+            if str(payload.emoji) == "🍌":
+                remove_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🍑"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Dub Peasant")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == "🍊":
+                remove_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🍎"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Roulette")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🍉"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
+                await user.remove_roles(remove_role)
+            # second message
+            elif str(payload.emoji) == "💦":
+                    remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
+                    await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🎱"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Black")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == "💛":
+                remove_role = discord.utils.get(channel.guild.roles, name = "Yellow")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🐷"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Pink")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "🔴"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Red")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "⚪"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "White")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == "🔶":
+                remove_role = discord.utils.get(channel.guild.roles, name = "Orange")
+                await user.remove_roles(remove_role)
+            elif(str(payload.emoji) == "💚"):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Green")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == "💜":
+                remove_role = discord.utils.get(channel.guild.roles, name = "Purple")
+                await user.remove_roles(remove_role)
 
 
     # a new member joins
