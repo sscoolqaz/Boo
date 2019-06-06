@@ -199,8 +199,8 @@ class member_moderation(commands.Cog):
                 await user.remove_roles(remove_role)
             # second message
             elif str(payload.emoji) == "💦":
-                    remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
-                    await user.remove_roles(remove_role)
+                remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
+                await user.remove_roles(remove_role)
             elif(str(payload.emoji) == "🎱"):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Black")
                 await user.remove_roles(remove_role)
