@@ -13,6 +13,7 @@ class update(commands.Cog):
     async def update_rules(self, ctx):
         if utils.check_roles(["Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # update the rules channel with any updates
+            lewd_role = guild.get_role(588951733980495902)
             embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
                 2. Spamming is not allowed.\n
                 3. Do not ask to become staff.\n
@@ -21,7 +22,7 @@ class update(commands.Cog):
                 6. No dangerous & shortened links.\n
                 7. Racism & degrading behavior is not acceptable.\n\n
                 Channel Rules of Use are in all channel descriptions.""", color=0xaf68c9) # set up embed
-            embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"`/verify`", inline = False)
+            embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"`/verify`\nThe NSFW Channels are Locked to the {lewd_role.mention} Role, to get this role please contact a active administrator.", inline = False)
             await ctx.send(embed=embed)
         else:
             await ctx.send("You do not have permission to use this command")
