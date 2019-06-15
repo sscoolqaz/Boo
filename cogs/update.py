@@ -13,7 +13,7 @@ class update(commands.Cog):
     async def update_rules(self, ctx):
         if utils.check_roles(["Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
             # update the rules channel with any updates
-            lewd_role = guild.get_role(588951733980495902)
+            lewd_role = ctx.guild.get_role(588951733980495902)
             embed = discord.Embed(title=f"-Zer0 Server Community Guidelines-", description=f"""1. No Advertising & Self Promoting of any kind.\n
                 2. Spamming is not allowed.\n
                 3. Do not ask to become staff.\n
