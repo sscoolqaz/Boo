@@ -22,7 +22,7 @@ class update(commands.Cog):
                 6. No dangerous & shortened links.\n
                 7. Racism & degrading behavior is not acceptable.\n\n
                 Channel Rules of Use are in all channel descriptions.""", color=0xaf68c9) # set up embed
-            embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"`/verify`\n.\nThe NSFW Channels are Locked to the {lewd_role.mention} Role, to get this role please contact a active administrator.", inline = False)
+            embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"`/verify`\n\nThe NSFW Channels are Locked to the {lewd_role.mention} Role, to get this role please contact a active administrator.", inline = False)
             await ctx.send(embed=embed)
         else:
             await ctx.send("You do not have permission to use this command")
