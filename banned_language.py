@@ -1,1 +1,1 @@
-bad_words = ["nigger","negro","nigr","niggr","nigga","niga","fag","faggot","rape"]
+bad_words = ["nigger","negro","fag","faggot","rape"]
