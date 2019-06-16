@@ -117,7 +117,6 @@ class member_moderation(commands.Cog):
 
 
     # assign roles based on adding a reaction
-
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         # variables
@@ -139,9 +138,6 @@ class member_moderation(commands.Cog):
                     await user.add_roles(add_role)
                 elif(str(payload.emoji) == "🍎"):
                     add_role = discord.utils.get(channel.guild.roles, name = "Roulette")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🥝"):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Lewd")
                     await user.add_roles(add_role)
                 elif(str(payload.emoji) == "🍉"):
                     add_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
@@ -198,16 +194,13 @@ class member_moderation(commands.Cog):
             elif(str(payload.emoji) == "🍎"):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Roulette")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🥝"):
-                remove_role = discord.utils.get(channel.guild.roles, name = "Lewd")
-                await user.remove_roles(remove_role)
             elif(str(payload.emoji) == "🍉"):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
                 await user.remove_roles(remove_role)
             # second message
             elif str(payload.emoji) == "💦":
-                    remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
-                    await user.remove_roles(remove_role)
+                remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
+                await user.remove_roles(remove_role)
             elif(str(payload.emoji) == "🎱"):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Black")
                 await user.remove_roles(remove_role)
