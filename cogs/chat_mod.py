@@ -12,6 +12,10 @@ class chat_mod(commands.Cog):
     # deletes messages containing specific words
     @commands.Cog.listener()
     async def on_message(self, message):
+        if message.guild is None:
+            print(f"DM from: {message.author.name}\nContent: ")
+            print(message.content)
+            return
         if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in message.author.roles]): # check the user has the required role
             return
         elif any(bad_word in message.content.lower() for bad_word in banned_language.bad_words):
