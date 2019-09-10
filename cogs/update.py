@@ -57,8 +57,8 @@ class update(commands.Cog):
 
             # coloured roles
             embed2 = discord.Embed(title=f"Roles!", description=f"React to obtain the following roles:", color=0xaf68c9) # set up embed
-            embed2.add_field(name = f"\u200b", value = f"""Blue 💦\n
-                Black 🎱\n
+            embed2.add_field(name = f"\u200b", value = f"""Blue <:Blue:621119170049736723>\n
+                Black <:Black:621119169785495563>\n
                 Yellow 💛\n
                 Pink 🐷\n
                 Red 🔴\n
