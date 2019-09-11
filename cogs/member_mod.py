@@ -5,6 +5,7 @@ import json
 import utils
 import channels
 import users
+import config
 
 
 class member_moderation(commands.Cog):
@@ -143,31 +144,31 @@ class member_moderation(commands.Cog):
                     add_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
                     await user.add_roles(add_role)
                 # second message
-                elif str(payload.emoji) == "💦":
+                elif str(payload.emoji) == config.blue_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Blue")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🎱"):
+                elif(str(payload.emoji) == config.black_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Black")
                     await user.add_roles(add_role)
-                elif str(payload.emoji) == "💛":
+                elif str(payload.emoji) == config.yellow_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Yellow")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🐷"):
+                elif(str(payload.emoji) == config.pink_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Pink")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🔴"):
+                elif(str(payload.emoji) == config.red_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Red")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "⚪"):
+                elif(str(payload.emoji) == config.white_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "White")
                     await user.add_roles(add_role)
-                elif str(payload.emoji) == "🔶":
+                elif str(payload.emoji) == config.orange_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Orange")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "💚"):
+                elif(str(payload.emoji) == config.green_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Green")
                     await user.add_roles(add_role)
-                elif str(payload.emoji) == "💜":
+                elif str(payload.emoji) == config.purple_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Purple")
                     await user.add_roles(add_role)
 
@@ -198,31 +199,31 @@ class member_moderation(commands.Cog):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
                 await user.remove_roles(remove_role)
             # second message
-            elif str(payload.emoji) == "💦":
+            elif str(payload.emoji) == config.blue_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Blue")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🎱"):
+            elif(str(payload.emoji) == config.black_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Black")
                 await user.remove_roles(remove_role)
-            elif str(payload.emoji) == "💛":
+            elif str(payload.emoji) == config.yellow_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Yellow")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🐷"):
+            elif(str(payload.emoji) == config.pink_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Pink")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🔴"):
+            elif(str(payload.emoji) == config.red_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Red")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "⚪"):
+            elif(str(payload.emoji) == config.white_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "White")
                 await user.remove_roles(remove_role)
-            elif str(payload.emoji) == "🔶":
+            elif str(payload.emoji) == config.orange_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Orange")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "💚"):
+            elif(str(payload.emoji) == config.green_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Green")
                 await user.remove_roles(remove_role)
-            elif str(payload.emoji) == "💜":
+            elif str(payload.emoji) == config.purple_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Purple")
                 await user.remove_roles(remove_role)
 
