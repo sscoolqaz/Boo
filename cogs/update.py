@@ -23,9 +23,9 @@ class update(commands.Cog):
                 7. Racism & degrading behavior is not acceptable.\n\n
                 Channel Rules of Use are in all channel descriptions.""", color=0xaf68c9) # set up embed
             embed.add_field(name = "TO VERIFY USE THE COMMAND", value = f"/verify", inline = False)
-            embed.add_field(name = "ROLES", value = f"You can grab yourself a Color Role and Identifer Roles in <#{config.channel_dict.auto_role}>. Lewd and Roulette Gives you access to there respective channels.", inline = False)
+            embed.add_field(name = "ROLES", value = f"You can grab yourself a Color Role and Identifer Roles in <#{config.channel_dict.get('auto_role')}>. Lewd and Roulette Gives you access to there respective channels.", inline = False)
             embed.add_field(name = "WARNINGS", value = f"All users have a 3 Strike warning. Admins can bypass this and Choose to ban a user if they see fit.\naka Obvious Trolling/Bot accounts.", inline = False)
-            embed.add_field(name = "WAIFU ROULETTE", value = f"<#{config.channel_dict.waifu_roulette}> Harems will reset every 6 Months.\n\nThe Score leader Board will be posted in <#{config.channel_dict.announcements}> at the end of every round and recive a uniqe role.", inline = False)
+            embed.add_field(name = "WAIFU ROULETTE", value = f"<#{config.channel_dict.get('waifu_roulette')}> Harems will reset every 6 Months.\n\nThe Score leader Board will be posted in <#{config.channel_dict.get('announcements')}> at the end of every round and recive a uniqe role.", inline = False)
             await ctx.send(embed=embed)
         else:
             await ctx.send("You do not have permission to use this command")
