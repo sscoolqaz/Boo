@@ -3,7 +3,6 @@ from discord.ext import commands
 import asyncio
 import json
 import utils
-import channels
 import users
 import config
 
@@ -16,7 +15,7 @@ class member_moderation(commands.Cog):
     # mute all users -not finished-
     @commands.command(hidden = True)
     async def verify(self, ctx):
-        if ctx.message.channel.id == channels.channel_dict["verify"]:
+        if ctx.message.channel.id == config.channel_dict["verify"]:
             user = ctx.message.author
             add_role = discord.utils.get(ctx.guild.roles, name = "Member")
             await user.add_roles(add_role)
@@ -126,7 +125,7 @@ class member_moderation(commands.Cog):
         channel = self.bot.get_channel(payload.channel_id)
 
         if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
-            if payload.channel_id == channels.channel_dict["auto_role"]: # in the role channel
+            if payload.channel_id == config.channel_dict["auto_role"]: # in the role channel
                 # first message
                 if str(payload.emoji) == "🍌":
                     add_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
@@ -181,7 +180,7 @@ class member_moderation(commands.Cog):
         user = guild.get_member(payload.user_id)
         channel = self.bot.get_channel(payload.channel_id)
 
-        if payload.channel_id == channels.channel_dict["auto_role"]:
+        if payload.channel_id == config.channel_dict["auto_role"]:
             #first message
             if str(payload.emoji) == "🍌":
                 remove_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
@@ -234,7 +233,7 @@ class member_moderation(commands.Cog):
         # welcome new user
         # message destinations
         new_member = await self.bot.fetch_user(member.id)
-        entrance = self.bot.get_channel(channels.channel_dict["entrance"])
+        entrance = self.bot.get_channel(config.channel_dict["entrance"])
         # send messages
         await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
