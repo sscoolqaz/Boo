@@ -1,9 +1,11 @@
-# channels
+# cha
 channel_dict = {
+    "announcements": 513441260925747201,
     "auto_role": 513515376022388786,
-    "general": 547907603494338610,
     "entrance": 547907603494338610,
-    "verify": 554120068619829249
+    "general": 547907603494338610,
+    "verify": 554120068619829249,
+    "waifu_roulette": 620872909803487234
 }
 
 # emojis
