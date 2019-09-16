@@ -1,4 +1,4 @@
-# cha
+# CHANNELS
 channel_dict = {
     "announcements": 513441260925747201,
     "auto_role": 513515376022388786,
@@ -8,7 +8,8 @@ channel_dict = {
     "waifu_roulette": 620872909803487234
 }
 
-# emojis
+# EMOJIS
+# colours
 black_emoji_id = "<:Black:621119169785495563>"
 blue_emoji_id = "<:Blue:621119170049736723>"
 yellow_emoji_id = "<:Yellow:621119170590933002>"
@@ -18,3 +19,9 @@ purple_emoji_id = "<:Purple:621119170985197588>"
 pink_emoji_id = "<:Pink:621119170297462803>"
 orange_emoji_id = "<:Orange:621119170637201408>"
 green_emoji_id = "<:Green:621119169617985558>"
+# other
+sub_emoji_id = "<:SubFreak:621120929468121091>"
+seasonal_emoji_id = "<:Seasonal:621120929400881165>"
+roulette_emoji_id = "<:Roulette:621120898706964490>"
+lewd_emoji_id = "<:Lewd:621120898564489226>"
+dub_emoji_id = "<:DubPeasent:621120916407058462>"
