@@ -127,20 +127,20 @@ class member_moderation(commands.Cog):
         if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
             if payload.channel_id == config.channel_dict["auto_role"]: # in the role channel
                 # first message
-                if str(payload.emoji) == "🍌":
+                if str(payload.emoji) == config.sub_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🍑"):
+                elif(str(payload.emoji) == config.dub_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Dub Peasant")
                     await user.add_roles(add_role)
-                elif str(payload.emoji) == "🍊":
+                elif str(payload.emoji) == config.seasonal_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🍎"):
+                elif(str(payload.emoji) == config.lewd_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Roulette")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == "🍉"):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
+                elif(str(payload.emoji) == config.lewd_emoji_id):
+                    add_role = discord.utils.get(channel.guild.roles, name = "Lewd")
                     await user.add_roles(add_role)
                 # second message
                 elif str(payload.emoji) == config.blue_emoji_id:
@@ -182,20 +182,20 @@ class member_moderation(commands.Cog):
 
         if payload.channel_id == config.channel_dict["auto_role"]:
             #first message
-            if str(payload.emoji) == "🍌":
+            if str(payload.emoji) == config.sub_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🍑"):
+            elif(str(payload.emoji) == config.dub_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Dub Peasant")
                 await user.remove_roles(remove_role)
-            elif str(payload.emoji) == "🍊":
+            elif str(payload.emoji) == config.seasonal_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🍎"):
+            elif(str(payload.emoji) == config.roulette_emoji_id):
                 remove_role = discord.utils.get(channel.guild.roles, name = "Roulette")
                 await user.remove_roles(remove_role)
-            elif(str(payload.emoji) == "🍉"):
-                remove_role = discord.utils.get(channel.guild.roles, name = "Spoilers")
+            elif(str(payload.emoji) == config.lewd_emoji_id):
+                remove_role = discord.utils.get(channel.guild.roles, name = "Lewd")
                 await user.remove_roles(remove_role)
             # second message
             elif str(payload.emoji) == config.blue_emoji_id:
