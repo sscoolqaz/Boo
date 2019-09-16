@@ -8,6 +8,12 @@ channel_dict = {
     "waifu_roulette": 620872909803487234
 }
 
+# ROLES
+role_dict = {
+    "admin": 513197401423740928,
+    "red_panda": 554470167002873904
+}
+
 # EMOJIS
 # colours
 black_emoji_id = "<:Black:621119169785495563>"
