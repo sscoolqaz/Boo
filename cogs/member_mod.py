@@ -136,7 +136,7 @@ class member_moderation(commands.Cog):
                 elif str(payload.emoji) == config.seasonal_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
                     await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.lewd_emoji_id):
+                elif(str(payload.emoji) == config.roulette_emoji_id):
                     add_role = discord.utils.get(channel.guild.roles, name = "Roulette")
                     await user.add_roles(add_role)
                 elif(str(payload.emoji) == config.lewd_emoji_id):
