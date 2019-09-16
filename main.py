@@ -17,50 +17,42 @@ async def on_ready():
 
 # immediately stop the bot
 @bot.command(hidden = True)
+@commands.has_role(config.role_dict.red_panda)
 async def stop(ctx):
-    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-        await bot.logout()
-    else:
-        await ctx.send("You do not have permission to use this command")
+    await bot.logout()
 
 
 # manually load a cog
 @bot.command(hidden = True)
+@commands.has_role(config.role_dict.red_panda)
 async def load(ctx, extension):
-    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-        try:
-            bot.load_extension(extension)
-            print(f"Loaded {extension}.\n")
-        except Exception as error:
-            print(f"{extension} could not be loaded. [{error}]")
-    else:
-        await ctx.send("You do not have permission to use this command")
+    try:
+        bot.load_extension(extension)
+        print(f"Loaded {extension}.\n")
+    except Exception as error:
+        print(f"{extension} could not be loaded. [{error}]")
 
 
 # manually unload a cog
 @bot.command(hidden = True)
+@commands.has_role(config.role_dict.red_panda)
 async def unload(ctx, extension):
-    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-        try:
-            bot.unload_extension(extension)
-            print(f"Unloaded {extension}.\n")
-        except Exception as error:
-            print(f"{extension} could not be unloaded. [{error}]")
-    else:
-        await ctx.send("You do not have permission to use this command")
+    try:
+        bot.unload_extension(extension)
+        print(f"Unloaded {extension}.\n")
+    except Exception as error:
+        print(f"{extension} could not be unloaded. [{error}]")
 
 
 # manually reload a cog
 @bot.command(hidden = True)
+@commands.has_role(config.role_dict.red_panda)
 async def reload(ctx, extension):
-    if utils.check_roles(["Red Panda Enthusiast"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-        try:
-            bot.reload_extension(extension)
-            print(f"Reloaded {extension}.\n")
-        except Exception as error:
-            print(f"{extension} could not be reloaded. [{error}]")
-    else:
-        await ctx.send("You do not have permission to use this command")
+    try:
+        bot.reload_extension(extension)
+        print(f"Reloaded {extension}.\n")
+    except Exception as error:
+        print(f"{extension} could not be reloaded. [{error}]")
 
 
 if __name__ == '__main__':
@@ -71,4 +63,3 @@ if __name__ == '__main__':
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
     bot.run("NTU0MDYyOTgyMzAxMjIwOTA1.XJ_imQ.2eQyYDsWfzAGQ3RsqlC7IxBtkOM") # real token
-    # bot.run("NTQ0NjYyMTU3NDQzMjAzMDk1.XNLj4Q.nVbJqRck7HKvNj7iswzYgYZ6bYg") # test token
