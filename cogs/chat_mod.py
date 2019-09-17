@@ -27,7 +27,7 @@ class chat_mod(commands.Cog):
 
     # clears the last x messages
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def clear(self, ctx, amount):
         channel = ctx.message.channel # get the channel to clear the messages from
         print(f"{ctx.message.author} deleted {amount} messages from {channel}...") # log how many messages are being deleted and from where and by who

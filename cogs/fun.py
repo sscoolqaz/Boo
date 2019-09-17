@@ -10,14 +10,14 @@ class Fun(commands.Cog):
 
 
     @commands.command()
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def ping(self, ctx):
         await ctx.send(f'Pong!')
 
 
     # copies the senders message
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def echo(self, ctx, *, words):
         """
         Repeats whatever you type in
@@ -28,7 +28,7 @@ class Fun(commands.Cog):
 
     # copies the senders message
     # @commands.command(hidden = True)
-    # @commands.has_role(config.role_dict.admin)
+    # @commands.has_role(config.role_dict.get("admin"))
     # async def gen_echo(self, ctx, *, words):
     #     await ctx.message.delete() # delete the original message
     #     await self.bot.get_channel(547907603494338610).send(words) # send the message

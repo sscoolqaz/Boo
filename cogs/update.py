@@ -10,7 +10,7 @@ class update(commands.Cog):
 
 
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def update_rules(self, ctx):
         # update the rules channel with any updates
         lewd_role = ctx.guild.get_role(513436281523404825)
@@ -30,7 +30,7 @@ class update(commands.Cog):
 
 
     @commands.command(pass_context = True, hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def update_roles(self, ctx):
         # delete existing messages
         channel = self.bot.get_channel(config.channel_dict["auto_role"]) # get the channel to clear the messages from
@@ -78,7 +78,7 @@ class update(commands.Cog):
         await channel_roles.add_reaction(config.orange_emoji_id)
         await channel_roles.add_reaction(config.green_emoji_id)
         await channel_roles.add_reaction(config.purple_emoji_id)
-        
+
 
 def setup(bot):
     bot.add_cog(update(bot))

@@ -28,7 +28,7 @@ class member_moderation(commands.Cog):
 
     # mute specific user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def mute(self, ctx, mute_user):
         user_to_mute = ctx.message.mentions[0] # id of person to mute that was mentioned in command
         mute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
@@ -38,7 +38,7 @@ class member_moderation(commands.Cog):
 
     # unmute specific user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def unmute(self, ctx, unmute_user):
         user_to_unmute = ctx.message.mentions[0] # id of person to unmute that was mentioned in command
         unmute_role = discord.utils.get(ctx.guild.roles, name = "Muted") # get the role to apply
@@ -48,7 +48,7 @@ class member_moderation(commands.Cog):
 
     # warn specific user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def warn(self, ctx, mute_user):
         message_sender = ctx.message.author # get message author
         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
@@ -74,7 +74,7 @@ class member_moderation(commands.Cog):
 
     # remove warning from specific user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def unwarn(self, ctx, mute_user):
         message_sender = ctx.message.author # get message author
         warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
@@ -95,14 +95,14 @@ class member_moderation(commands.Cog):
 
     # kick mentioned user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def kick(self, ctx, ban_user, *, words):
         await ctx.message.mentions[0].kick(reason = words)
 
 
     # ban mentioned user
     @commands.command(hidden = True)
-    @commands.has_role(config.role_dict.admin)
+    @commands.has_role(config.role_dict.get("admin"))
     async def ban(self, ctx, ban_user):
         await ctx.message.mentions[0].ban()
 
