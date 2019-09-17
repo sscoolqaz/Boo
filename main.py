@@ -18,14 +18,14 @@ async def on_ready():
 
 # immediately stop the bot
 @bot.command(hidden = True)
-@commands.has_role(config.role_dict.red_panda)
+@commands.has_role(config.role_dict.get("red_panda"))
 async def stop(ctx):
     await bot.logout()
 
 
 # manually load a cog
 @bot.command(hidden = True)
-@commands.has_role(config.role_dict.red_panda)
+@commands.has_role(config.role_dict.get("red_panda"))
 async def load(ctx, extension):
     try:
         bot.load_extension(extension)
@@ -36,7 +36,7 @@ async def load(ctx, extension):
 
 # manually unload a cog
 @bot.command(hidden = True)
-@commands.has_role(config.role_dict.red_panda)
+@commands.has_role(config.role_dict.get("red_panda"))
 async def unload(ctx, extension):
     try:
         bot.unload_extension(extension)
@@ -47,7 +47,7 @@ async def unload(ctx, extension):
 
 # manually reload a cog
 @bot.command(hidden = True)
-@commands.has_role(config.role_dict.red_panda)
+@commands.has_role(config.role_dict.get("red_panda"))
 async def reload(ctx, extension):
     try:
         bot.reload_extension(extension)
