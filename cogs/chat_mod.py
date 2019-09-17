@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import banned_language
 import utils
+import config
 
 
 class chat_mod(commands.Cog):
