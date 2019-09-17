@@ -27,20 +27,18 @@ class chat_mod(commands.Cog):
 
     # clears the last x messages
     @commands.command(hidden = True)
+    @commands.has_role(config.role_dict.admin)
     async def clear(self, ctx, amount):
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            channel = ctx.message.channel # get the channel to clear the messages from
-            print(f"{ctx.message.author} deleted {amount} messages from {channel}...") # log how many messages are being deleted and from where and by who
+        channel = ctx.message.channel # get the channel to clear the messages from
+        print(f"{ctx.message.author} deleted {amount} messages from {channel}...") # log how many messages are being deleted and from where and by who
 
-            i = 0
-            async for message in channel.history():
-                if i < (int(amount) + 1):
-                    i += 1
-                    await message.delete()
+        i = 0
+        async for message in channel.history():
+            if i < (int(amount) + 1):
+                i += 1
+                await message.delete()
 
-            print("Messages deleted\n")
-        else:
-            print("You do not have permission to use this command")
+        print("Messages deleted\n")
 
 
 def setup(bot):

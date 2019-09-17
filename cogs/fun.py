@@ -10,34 +10,28 @@ class Fun(commands.Cog):
 
 
     @commands.command()
+    @commands.has_role(config.role_dict.admin)
     async def ping(self, ctx):
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await ctx.send(f'Pong!')
-        else:
-            await ctx.send("You do not have permission to use this command")
+        await ctx.send(f'Pong!')
 
 
     # copies the senders message
     @commands.command(hidden = True)
+    @commands.has_role(config.role_dict.admin)
     async def echo(self, ctx, *, words):
         """
         Repeats whatever you type in
         """
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await ctx.message.delete() # delete the original message
-            await ctx.send(words) # send the message
-        else:
-            await ctx.send("You do not have permission to use this command")
+        await ctx.message.delete() # delete the original message
+        await ctx.send(words) # send the message
 
 
     # copies the senders message
-    @commands.command(hidden = True)
-    async def gen_echo(self, ctx, *, words):
-        if utils.check_roles(["Red Panda Enthusiast", "Administrator"], [y.name for y in ctx.message.author.roles]): # check the user has the required role
-            await ctx.message.delete() # delete the original message
-            await self.bot.get_channel(547907603494338610).send(words) # send the message
-        else:
-            await ctx.send("You do not have permission to use this command")
+    # @commands.command(hidden = True)
+    # @commands.has_role(config.role_dict.admin)
+    # async def gen_echo(self, ctx, *, words):
+    #     await ctx.message.delete() # delete the original message
+    #     await self.bot.get_channel(547907603494338610).send(words) # send the message
 
 
 def setup(bot):
