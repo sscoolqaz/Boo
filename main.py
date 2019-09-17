@@ -5,7 +5,7 @@ import utils
 
 
 bot = commands.Bot(command_prefix = "/")
-extensions = ["cogs.fun","cogs.member_mod","cogs.chat_mod","cogs.update"] # list of cogs to call
+extensions = ["fun","member_mod","chat_mod","update"] # list of cogs to call
 
 
 @bot.event
@@ -58,7 +58,7 @@ async def reload(ctx, extension):
 if __name__ == '__main__':
     for extension in extensions:
         try:
-            bot.load_extension(extension)
+            bot.load_extension(f"cogs.{extension}")
             print(f"Loaded cog: {extension}")
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
