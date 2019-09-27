@@ -28,11 +28,11 @@ class Fun(commands.Cog):
 
 
     # copies the senders message
-    # @commands.command(hidden = True)
-    # @commands.has_role(config.role_dict.get("admin"))
-    # async def gen_echo(self, ctx, *, words):
-    #     await ctx.message.delete() # delete the original message
-    #     await self.bot.get_channel(547907603494338610).send(words) # send the message
+    @commands.command(hidden = True)
+    @commands.has_role(config.role_dict.get("admin"))
+    async def channel_echo(self, ctx, channel: discord.TextChannel, *, words):
+        await ctx.message.delete() # delete the original message
+        await channel.send(channel.id)
 
 
 def setup(bot):
