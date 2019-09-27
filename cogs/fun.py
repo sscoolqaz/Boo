@@ -32,7 +32,7 @@ class Fun(commands.Cog):
     @commands.has_role(config.role_dict.get("admin"))
     async def channel_echo(self, ctx, channel: discord.TextChannel, *, words):
         await ctx.message.delete() # delete the original message
-        await channel.send(channel.id)
+        await channel.send(words)
 
 
 def setup(bot):
