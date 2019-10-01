@@ -31,3 +31,8 @@ seasonal_emoji_id = "<:Seasonal:621120929400881165>"
 roulette_emoji_id = "<:Roulette:621120898706964490>"
 lewd_emoji_id = "<:Lewd:621120898564489226>"
 dub_emoji_id = "<:DubPeasent:621120916407058462>"
+# seasonal
+succubus_emoji_id = "👻"
+skeletal_emoji_id = "💀"
+vampire_emoji_id = "🦇"
+twins_emoji_id = "🎃"
