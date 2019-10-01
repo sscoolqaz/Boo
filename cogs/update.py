@@ -84,7 +84,7 @@ class update(commands.Cog):
         embed1.add_field(name = f"\u200b", value = f"""Virgin Succubus {config.succubus_emoji_id}\n
             Skeletal Ruler {config.skeletal_emoji_id}\n
             Loli Vampire {config.vampire_emoji_id}\n
-            Elfen Twins {config.twins_emoji_id}, inline=False)
+            Elfen Twins {config.twins_emoji_id}""", inline=False)
         channel_roles = await channel.send(embed=embed1)
         # add the emojis to react with
         await channel_roles.add_reaction(config.succubus_emoji_id)
