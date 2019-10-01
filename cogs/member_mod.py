@@ -161,6 +161,19 @@ class member_moderation(commands.Cog):
                 elif str(payload.emoji) == config.purple_emoji_id:
                     add_role = discord.utils.get(channel.guild.roles, name = "Purple")
                     await user.add_roles(add_role)
+                # third message
+                elif str(payload.emoji) == config.succubus_emoji_id:
+                    add_role = discord.utils.get(channel.guild.roles, name = "Virgin Succubus")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == config.skeletal_emoji_id:
+                    add_role = discord.utils.get(channel.guild.roles, name = "Skeletal Ruler")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == config.vampire_emoji_id:
+                    add_role = discord.utils.get(channel.guild.roles, name = "Loli Vampire")
+                    await user.add_roles(add_role)
+                elif str(payload.emoji) == config.twins_emoji_id:
+                    add_role = discord.utils.get(channel.guild.roles, name = "Elfen Twins")
+                    await user.add_roles(add_role)
 
 
     # remove roles based on removing a reaction
@@ -215,6 +228,19 @@ class member_moderation(commands.Cog):
                 await user.remove_roles(remove_role)
             elif str(payload.emoji) == config.purple_emoji_id:
                 remove_role = discord.utils.get(channel.guild.roles, name = "Purple")
+                await user.remove_roles(remove_role)
+            # third message
+            elif str(payload.emoji) == config.succubus_emoji_id:
+                    remove_role = discord.utils.get(channel.guild.roles, name = "Virgin Succubus")
+                    await user.remove_roles(remove_role)
+            elif str(payload.emoji) == config.skeletal_emoji_id:
+                remove_role = discord.utils.get(channel.guild.roles, name = "Skeletal Ruler")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == config.vampire_emoji_id:
+                remove_role = discord.utils.get(channel.guild.roles, name = "Loli Vampire")
+                await user.remove_roles(remove_role)
+            elif str(payload.emoji) == config.twins_emoji_id:
+                remove_role = discord.utils.get(channel.guild.roles, name = "Elfen Twins")
                 await user.remove_roles(remove_role)
 
 
