@@ -5,11 +5,15 @@ import json
 import utils
 import users
 import config
+import logging
 
 
 class member_moderation(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
+
+
+    # logging.basicConfig(level=logging.DEBUG)
 
 
     # mute all users -not finished-
@@ -254,6 +258,13 @@ class member_moderation(commands.Cog):
         # send messages
         await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
+
+        # log
+        embed = discord.Embed(title=f"Member Joined", description=f"<@{new_member.id}> {new_member.name}", color=0xaf68c9) # set up embed
+        embed.set_thumbnail(url=new_member.avatar_url)
+        embed.add_field(name = "Account Creation", value = new_member.created_at.strftime("%c"), inline = False)
+        embed.set_footer(text=f"ID: {new_member.id}")
+        await self.bot.get_channel(config.channel_dict["logs"]).send(embed=embed)
 
         # auto assign role to new member
         add_role = discord.utils.get(member.guild.roles, name = "Temp")

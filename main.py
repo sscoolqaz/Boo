@@ -10,7 +10,7 @@ with open("token.json", 'r') as f:
     token = json.load(f)['TOKEN']
 
 bot = commands.Bot(command_prefix = "/")
-extensions = ["fun","member_mod","chat_mod","update"] # list of cogs to call
+extensions = ["chat_mod","fun","logs", "member_mod","update"] # list of cogs to call
 
 
 @bot.event
@@ -68,4 +68,3 @@ if __name__ == '__main__':
         except Exception as error:
             print(f"{extension} could not be loaded. [{error}]")
     bot.run(token)
-    # bot.run("NTU0MDYyOTgyMzAxMjIwOTA1.XJ_imQ.2eQyYDsWfzAGQ3RsqlC7IxBtkOM") # real token
