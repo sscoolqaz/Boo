@@ -121,63 +121,7 @@ class member_moderation(commands.Cog):
 
         if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
             if payload.channel_id == config.channel_dict["auto_role"]: # in the role channel
-                # first message
-                if str(payload.emoji) == config.sub_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Sub Freak")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.dub_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Dub Peasant")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.seasonal_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Seasonal")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.roulette_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Roulette")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.lewd_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Lewd")
-                    await user.add_roles(add_role)
-                # second message
-                elif str(payload.emoji) == config.blue_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Blue")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.black_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Black")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.yellow_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Yellow")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.pink_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Pink")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.red_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Red")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.white_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "White")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.orange_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Orange")
-                    await user.add_roles(add_role)
-                elif(str(payload.emoji) == config.green_emoji_id):
-                    add_role = discord.utils.get(channel.guild.roles, name = "Green")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.purple_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Purple")
-                    await user.add_roles(add_role)
-                # third message
-                elif str(payload.emoji) == config.succubus_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Virgin Succubus")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.skeletal_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Skeletal Ruler")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.vampire_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Loli Vampire")
-                    await user.add_roles(add_role)
-                elif str(payload.emoji) == config.twins_emoji_id:
-                    add_role = discord.utils.get(channel.guild.roles, name = "Elfen Twins")
-                    await user.add_roles(add_role)
+                await user.add_roles(discord.utils.get(channel.guild.roles, id = config.role_dict.get(str(payload.emoji)))) # add role to user depending on the reaction emoji
 
 
     # remove roles based on removing a reaction
