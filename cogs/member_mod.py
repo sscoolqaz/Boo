@@ -121,7 +121,9 @@ class member_moderation(commands.Cog):
 
         if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
             if payload.channel_id == config.channel_dict["auto_role"]: # in the role channel
-                await user.add_roles(discord.utils.get(channel.guild.roles, id = config.role_dict.get(str(payload.emoji)))) # add role to user depending on the reaction emoji
+                role_to_add = discord.utils.get(channel.guild.roles, id = config.role_dict.get(str(payload.emoji)))
+                await user.add_roles(role_to_add) # add role to user depending on the reaction emoji
+                await self.bot.get_channel(config.channel_dict["logs"]).send(embed=self.role_embed("added.", user, role_to_add))
 
 
     # remove roles based on removing a reaction
@@ -133,7 +135,18 @@ class member_moderation(commands.Cog):
         channel = self.bot.get_channel(payload.channel_id)
 
         if payload.channel_id == config.channel_dict["auto_role"]:
-            await user.remove_roles(discord.utils.get(channel.guild.roles, id = config.role_dict.get(str(payload.emoji)))) # remove role to user depending on the reaction emoji
+            role_to_remove = discord.utils.get(channel.guild.roles, id = config.role_dict.get(str(payload.emoji)))
+            await user.remove_roles(role_to_remove) # remove role to user depending on the reaction emoji
+            await self.bot.get_channel(config.channel_dict["logs"]).send(embed=self.role_embed("removed.", user, role_to_remove))
+
+
+    # post an embed logging someone getting/losing a role
+    def role_embed(self, status, user, role):
+        print(status)
+        embed = discord.Embed(title = "Role Change", description = f"<@{user.id}> had the role {role.name} {status}", color=0xaf68c9)
+        embed.set_thumbnail(url=user.avatar_url)
+        embed.set_footer(text=f"ID: {user.id}")
+        return embed
 
 
     # a new member joins
@@ -144,11 +157,11 @@ class member_moderation(commands.Cog):
         new_member = await self.bot.fetch_user(member.id)
         entrance = self.bot.get_channel(config.channel_dict["entrance"])
         # send messages
-        await new_member.send(f"BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
+        await new_member.send("BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
         await entrance.send(f"<@{new_member.id}> just joined the server!")
 
         # log
-        embed = discord.Embed(title=f"Member Joined", description=f"<@{new_member.id}> {new_member.name}", color=0xaf68c9) # set up embed
+        embed = discord.Embed(title="Member Joined", description=f"<@{new_member.id}> {new_member.name}", color=0xaf68c9) # set up embed
         embed.set_thumbnail(url=new_member.avatar_url)
         embed.add_field(name = "Account Creation", value = new_member.created_at.strftime("%c"), inline = False)
         embed.set_footer(text=f"ID: {new_member.id}")
