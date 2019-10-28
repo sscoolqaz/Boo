@@ -142,7 +142,6 @@ class member_moderation(commands.Cog):
 
     # post an embed logging someone getting/losing a role
     def role_embed(self, status, user, role):
-        print(status)
         embed = discord.Embed(title = "Role Change", description = f"<@{user.id}> had the role {role.name} {status}", color=0xaf68c9)
         embed.set_thumbnail(url=user.avatar_url)
         embed.set_footer(text=f"ID: {user.id}")
