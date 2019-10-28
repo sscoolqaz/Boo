@@ -10,12 +10,15 @@ class Logs(commands.Cog):
     def __init__(self, bot):
         self.bot = bot
 
-    
-
-    # @commands.command()
-    # @commands.has_role(config.role_dict.get("admin"))
-    # async def log(self, ctx):
-    #     logging.debug('Pong!')
+    # deletes messages containing specific words
+    @commands.Cog.listener()
+    async def on_raw_message_delete(self, payload):
+        try:
+            # message is cached
+            print(f"Message content:\n{payload.cached_message.content}")
+        except:
+            # message is too old
+            print(f"Message content: NADA")
 
 
 def setup(bot):
