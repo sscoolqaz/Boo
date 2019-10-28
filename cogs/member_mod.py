@@ -171,5 +171,15 @@ class member_moderation(commands.Cog):
         await member.add_roles(add_role)
 
 
+    # a member leaves
+    @commands.Cog.listener()
+    async def on_member_remove(self, member):
+        # log
+        embed = discord.Embed(title="Member Left", description=f"<@{member.id}> {member.name}", color=0xaf68c9) # set up embed
+        embed.set_thumbnail(url=member.avatar_url)
+        embed.set_footer(text=f"ID: {member.id}")
+        await self.bot.get_channel(config.channel_dict["logs"]).send(embed=embed)
+
+
 def setup(bot):
     bot.add_cog(member_moderation(bot))
