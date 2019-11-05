@@ -16,6 +16,35 @@ class Fun(commands.Cog):
         await ctx.send(f'Pong!')
 
 
+    @commands.command()
+    async def uwu(self, ctx, *, message):
+        uwufied = self.uwufication(message)
+        await ctx.message.delete()
+        await ctx.send(uwufied)
+
+    def uwufication(self, message):
+        # r or l -> w
+        message = message.replace("l","w")
+        message = message.replace("L","W")
+        message = message.replace("r","w")
+        message = message.replace("R","W")
+        # n+<vowel> -> ny+<voewl>
+        message = message.replace("na","nya")
+        message = message.replace("NA","NYA")
+        message = message.replace("ne","nye")
+        message = message.replace("NE","NYE")
+        message = message.replace("ni","nyi")
+        message = message.replace("NI","NYI")
+        message = message.replace("no","nyo")
+        message = message.replace("NO","NYO")
+        message = message.replace("nu","nyu")
+        message = message.replace("NU","NYU")
+        # ove -> uv
+        message = message.replace("ove","uv")
+        message = message.replace("OVE","UV")
+        return message
+
+
     # copies the senders message
     @commands.command(hidden = True)
     @commands.has_role(config.role_dict.get("admin"))
