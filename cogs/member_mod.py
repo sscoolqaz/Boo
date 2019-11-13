@@ -88,8 +88,8 @@ class member_moderation(commands.Cog):
         for user in data:
             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
                 if user['warnings'] == 0:
-                    print(f"{user['name']} now has {user['warnings']} warnings.") # discord
-                    await ctx.send(f"{user['name']} doesnt have any warnings!") # console
+                    print(f"{user['name']} doesnt have any warnings!") # console
+                    await ctx.send(f"{user['name']} doesnt have any warnings!") # discord
                     continue
                 # decrements the users warning count
                 user['warnings'] -= 1
