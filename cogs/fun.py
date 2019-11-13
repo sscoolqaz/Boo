@@ -18,7 +18,7 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def uwu(self, ctx, *, message):
-        uwufied = uwufication(message)
+        uwufied = Fun.uwufication(message)
         await ctx.message.delete()
         await ctx.send(uwufied)
     
