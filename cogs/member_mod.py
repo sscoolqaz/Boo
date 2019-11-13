@@ -54,19 +54,19 @@ class member_moderation(commands.Cog):
     @commands.command(hidden = True)
     @commands.has_role(config.role_dict.get("admin"))
     async def warn(self, ctx, mute_user):
-        message_sender = ctx.message.author # get message author
-        warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-        warning_id = ctx.message.mentions[0].id # id of person to that was warned
+        warning_name    = ctx.message.mentions[0].display_name # name of person to that was warned
+        warning_id      = ctx.message.mentions[0].id # id of person to that was warned
         # load the json file
         with open('warnings.json') as f:
             data = json.load(f)
         record_exists = False
         # search for the warned user
         for user in data:
-            if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
+            if user['id'] == warning_id: # if the warning id sent matches the one in the json file
                 # increase the users warning count
                 user['warnings'] += 1
-                print(f"{user['name']} now has {user['warnings']} warnings.")
+                print(f"{user['name']} now has {user['warnings']} warnings.") # console
+                await ctx.send(f"{user['name']} now has {user['warnings']} warnings.") # discord
                 record_exists = True # record has been found
         # if no record exists for the mentioned user
         if record_exists == False:
@@ -80,18 +80,21 @@ class member_moderation(commands.Cog):
     @commands.command(hidden = True)
     @commands.has_role(config.role_dict.get("admin"))
     async def unwarn(self, ctx, mute_user):
-        message_sender = ctx.message.author # get message author
-        warning_name = ctx.message.mentions[0].display_name # name of person to that was warned
-        warning_id = ctx.message.mentions[0].id # id of person to that was warned
+        warning_id      = ctx.message.mentions[0].id # id of person to that was warned
         # load the json file
         with open('warnings.json') as f:
             data = json.load(f)
         # search for the warned user
         for user in data:
             if user['id'] == warning_id: # if the warning id sent mathes the one in the json file
-                # increase the users warning count
-                user['warnings'] = 0
-                print(f"{user['name']} now has {user['warnings']} warnings.")
+                if user['warnings'] == 0:
+                    print(f"{user['name']} doesnt have any warnings!") # console
+                    await ctx.send(f"{user['name']} doesnt have any warnings!") # discord
+                    continue
+                # decrements the users warning count
+                user['warnings'] -= 1
+                print(f"{user['name']} now has {user['warnings']} warnings.") # console
+                await ctx.send(f"{user['name']} now has {user['warnings']} warnings.") # discord
         # write the edited dict to the json file
         with open('warnings.json', 'w') as f:
             json.dump(data, f, indent = 2)
@@ -115,8 +118,8 @@ class member_moderation(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_add(self, payload):
         # variables
-        guild = self.bot.get_guild(payload.guild_id)
-        user = guild.get_member(payload.user_id)
+        guild   = self.bot.get_guild(payload.guild_id)
+        user    = guild.get_member(payload.user_id)
         channel = self.bot.get_channel(payload.channel_id)
 
         if payload.user_id != users.users_dict["Booette"]: # reaction author wasn't bot
@@ -130,8 +133,8 @@ class member_moderation(commands.Cog):
     @commands.Cog.listener()
     async def on_raw_reaction_remove(self, payload):
         # variables
-        guild = self.bot.get_guild(payload.guild_id)
-        user = guild.get_member(payload.user_id)
+        guild   = self.bot.get_guild(payload.guild_id)
+        user    = guild.get_member(payload.user_id)
         channel = self.bot.get_channel(payload.channel_id)
 
         if payload.channel_id == config.channel_dict["auto_role"]:
