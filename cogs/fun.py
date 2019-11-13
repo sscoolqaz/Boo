@@ -18,11 +18,12 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def uwu(self, ctx, *, message):
-        uwufied = self.uwufication(message)
+        uwufied = uwufication(message)
         await ctx.message.delete()
         await ctx.send(uwufied)
-
-    def uwufication(self, message):
+    
+    @staticmethod
+    def uwufication(message):
         # r or l -> w
         message = message.replace("l","w")
         message = message.replace("L","W")
