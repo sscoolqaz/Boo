@@ -32,7 +32,7 @@ async def stop(ctx):
 @commands.has_role(config.role_dict.get("red_panda"))
 async def load(ctx, extension):
     try:
-        bot.load_extension(extension)
+        bot.load_extension(f"cogs.{extension}")
         print(f"Loaded {extension}.\n")
     except Exception as error:
         print(f"{extension} could not be loaded. [{error}]")
@@ -43,7 +43,7 @@ async def load(ctx, extension):
 @commands.has_role(config.role_dict.get("red_panda"))
 async def unload(ctx, extension):
     try:
-        bot.unload_extension(extension)
+        bot.unload_extension(f"cogs.{extension}")
         print(f"Unloaded {extension}.\n")
     except Exception as error:
         print(f"{extension} could not be unloaded. [{error}]")
@@ -54,7 +54,7 @@ async def unload(ctx, extension):
 @commands.has_role(config.role_dict.get("red_panda"))
 async def reload(ctx, extension):
     try:
-        bot.reload_extension(extension)
+        bot.reload_extension(f"cogs.{extension}")
         print(f"Reloaded {extension}.\n")
     except Exception as error:
         print(f"{extension} could not be reloaded. [{error}]")
