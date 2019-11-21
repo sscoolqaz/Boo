@@ -17,11 +17,18 @@ class Fun(commands.Cog):
 
 
     @commands.command()
+    async def credit(self, ctx):
+        embed = discord.Embed(title = "Booette Credits", description = "Credit for those who have contributed to Booette!")
+        
+        ctx.send(embed)
+
+
+    @commands.command()
     async def uwu(self, ctx, *, message):
         uwufied = Fun.uwufication(message)
         await ctx.message.delete()
         await ctx.send(uwufied)
-    
+
     @staticmethod
     def uwufication(message):
         # r or l -> w
