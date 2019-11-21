@@ -3,6 +3,7 @@ from discord.ext import commands
 import json
 import utils
 import config
+import users
 
 
 class Fun(commands.Cog):
@@ -19,8 +20,9 @@ class Fun(commands.Cog):
     @commands.command()
     async def credit(self, ctx):
         embed = discord.Embed(title = "Booette Credits", description = "Credit for those who have contributed to Booette!")
-
-        await ctx.send(embed)
+        embed.add_field()
+        embed.set_thumbnail(url=(bot.get_user(users.users_dict["Booette"])).avatar_url)
+        await ctx.send(embed=embed)
 
 
     @commands.command()
