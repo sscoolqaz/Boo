@@ -19,8 +19,10 @@ class Fun(commands.Cog):
 
     @commands.command()
     async def credit(self, ctx):
-        embed = discord.Embed(title = "Booette Credits", description = f"Booette was developed by <@{users.users_dict.get("Plugs")}>")
-        embed.add_field(name = "Developer", value = f"/verify", inline = False)
+        bot_name = users.users_dict.get("Booette")
+        developer = users.users_dict.get("Plugs")
+        embed = discord.Embed(title = "Booette Credits", description = f"<@{bot_name}> was developed by <@{developer}>\n\n" +
+                                f"<@{bot_name}>'s Profile image was created by jokanhiyou @ https://twitter.com/jokanhiyou?s=09")
         embed.set_thumbnail(url=(self.bot.get_user(users.users_dict.get("Booette")).avatar_url))
         await ctx.send(embed=embed)
 
