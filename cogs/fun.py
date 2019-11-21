@@ -19,8 +19,8 @@ class Fun(commands.Cog):
     @commands.command()
     async def credit(self, ctx):
         embed = discord.Embed(title = "Booette Credits", description = "Credit for those who have contributed to Booette!")
-        
-        ctx.send(embed)
+
+        await ctx.send(embed)
 
 
     @commands.command()
