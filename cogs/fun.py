@@ -76,5 +76,25 @@ class Fun(commands.Cog):
         await channel.send(words)
 
 
+    @commands.command()
+    async def pfp(self, ctx, user=None):
+        """
+        Gets a specified user's profile picture
+        """
+        try:
+            if user is None:
+                user = ctx.message.author
+            else:
+                user = ctx.message.mentions[0]
+            if user.nick is None: # if no nickname use username
+                embed = discord.Embed(title=f"{user.name}'s Profile Picture")
+            else:
+                embed = discord.Embed(title=f"{user.nick}'s Profile Picture")
+            embed.set_image(url=user.avatar_url)
+            await ctx.send(embed=embed)
+        except IndexError:
+            await ctx.send("Usage:\n\tg!pfp <@someone>")
+
+
 def setup(bot):
     bot.add_cog(Fun(bot))
