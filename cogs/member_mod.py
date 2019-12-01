@@ -21,6 +21,7 @@ class member_moderation(commands.Cog):
     async def verify(self, ctx):
         if ctx.message.channel.id == config.channel_dict["verify"]:
             user = ctx.message.author
+            entrance = self.bot.get_channel(config.channel_dict["entrance"])
             add_role = discord.utils.get(ctx.guild.roles, name = "Member")
             await user.add_roles(add_role)
             print(f"The role {add_role} was added to {user}")
@@ -28,6 +29,7 @@ class member_moderation(commands.Cog):
             rmv_role = discord.utils.get(ctx.guild.roles, name = "Temp")
             await user.remove_roles(rmv_role)
             print(f"The role {rmv_role} was removed from {user}")
+            await entrance.send(f"<@{user.id}> just joined the server!")
 
 
     # mute specific user
@@ -157,10 +159,8 @@ class member_moderation(commands.Cog):
         # welcome new user
         # message destinations
         new_member = await self.bot.fetch_user(member.id)
-        entrance = self.bot.get_channel(config.channel_dict["entrance"])
         # send messages
         await new_member.send("BOO! Welcome to Zer0!\nPlease read through our rules page then type `/verify` into the #verify channel to access the server")
-        await entrance.send(f"<@{new_member.id}> just joined the server!")
 
         # log
         embed = discord.Embed(title="Member Joined", description=f"<@{new_member.id}> {new_member.name}", color=0xaf68c9) # set up embed
