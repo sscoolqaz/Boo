@@ -24,7 +24,20 @@ class Logs(commands.Cog):
             embed.set_thumbnail(url=user.avatar_url)
             embed.set_footer(text=f"ID: {user.id}")
         await self.bot.get_channel(config.channel_dict["logs"]).send(embed=embed)
-
+    
+    # logs nickname changes
+    @commands.Cog.listener()
+    async def on_member_update(self, before, after):
+        if before.nick != after.nick: # on trigger check if nickname changed
+            embed = discord.Embed(title = f"Nickname Changed", description = f"{after.mention}")
+            embed.add_field(name = "From:"  , value = f"{before.nick}", inline = False)
+            if after.nick is not None: # if the user resets their nickname
+                embed.add_field(name = "To:"    , value = f"{after.nick}", inline = False)
+            else:
+                embed.add_field(name = "To:"    , value = f"{after.display_name}", inline = False)
+            embed.set_thumbnail(url=after.avatar_url) # discord.py treats user as member
+            embed.set_footer(text=f"User ID: {after.id}")
+            await self.bot.get_channel(config.channel_dict.get("logs")).send(embed=embed)
 
 def setup(bot):
     bot.add_cog(Logs(bot))
