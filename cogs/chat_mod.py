@@ -13,7 +13,7 @@ class chat_mod(commands.Cog):
     # deletes messages containing specific words
     @commands.Cog.listener()
     async def on_message(self, message):
-        if message.guild is None:
+        if message.guild is None and message.author.bot != True: # bot exception
             print(f"DM from: {message.author.name}\nContent: ")
             print(message.content)
             return
